@@ -1,0 +1,31 @@
+name: PEGASUS Daily Administrative Cycle
+
+on:
+  schedule:
+    - cron: "15 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-administration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PEGASUS
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run PEGASUS administrative cycle
+        env:
+          VALHALLA_VAULT_PATH: ${{ vars.VALHALLA_VAULT_PATH }}
+        run: python scripts/run_daily.py
+      - name: Persist ledger
+        run: |
+          git config user.name "PEGASUS Administrative System"
+          git config user.email "pegasus@users.noreply.github.com"
+          git add -f data/*.json
+          git diff --cached --quiet || git commit -m "PEGASUS: daily administrative ledger"
+          git push
