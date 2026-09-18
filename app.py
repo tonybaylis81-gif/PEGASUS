@@ -1,9 +1,16 @@
+import os
 import streamlit as st
 from pegasus.core import Pegasus
+from pegasus.portable import initialize_portable_root
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
-pegasus = Pegasus()
+home = os.environ.get("PEGASUS_HOME")
+if home:
+    initialize_portable_root(home)
+    pegasus = Pegasus()
+else:
+    pegasus = Pegasus()
 
 st.title("🪽 PEGASUS")
 st.caption("Valhalla Engineering Administrative & Command System")
@@ -13,7 +20,9 @@ col1, col2, col3, col4 = st.columns(4)
 col1.metric("Records", pegasus.count("records"))
 col2.metric("Documents", pegasus.count("documents"))
 col3.metric("Tasks", pegasus.count("tasks"))
-col4.metric("Personnel", pegasus.count("sentinels"))
+col4.metric("Sentinels", pegasus.count("sentinels"))
+
+st.caption(f"Portable home: {os.environ.get('PEGASUS_HOME', 'local project data')}")
 
 tabs = st.tabs(["Command", "Records", "Documents", "Tasks", "Sentinels"])
 
