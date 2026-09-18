@@ -1,16 +1,31 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
 
-class Pegasus:
-    """Administrative core for the Valhalla PEGASUS system."""
+SYSTEM_IDENTITY = {
+    "system": "PEGASUS",
+    "organization": "VALHALLA INDUSTRIAL UTILITY APPLICATIONS INC.",
+    "role": "Administrative & Command System",
+    "primary_authority": "Founder, CEO, and Executive Director Jason Don Mabbutt",
+    "chain": "PEGASUS -> Sentinel Lieutenant -> Minion",
+    "vault": "VALHALLA ENGINEERING VAULT",
+    "data_format": "Portable",
+    "audit": "Enabled",
+    "destructive_operations": "Disabled by default",
+    "human_authorization": "Required for consequential actions",
+}
 
-    def __init__(self, data_dir: str = "data"):
-        self.data_dir = Path(data_dir)
+
+class Pegasus:
+    """Portable administrative core for the Valhalla PEGASUS system."""
+
+    def __init__(self, data_dir: str | None = None):
+        self.data_dir = Path(data_dir or self._default_data_dir()).expanduser().resolve()
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.files = {
             "records": self.data_dir / "records.json",
@@ -19,7 +34,15 @@ class Pegasus:
             "commands": self.data_dir / "commands.json",
             "sentinels": self.data_dir / "sentinels.json",
         }
+        self.manifest_path = self.data_dir / "portable_manifest.json"
         self._bootstrap()
+
+    @staticmethod
+    def _default_data_dir() -> str:
+        home = os.environ.get("PEGASUS_HOME")
+        if home:
+            return str(Path(home) / "LEDGER")
+        return str(Path("data"))
 
     @staticmethod
     def _now() -> str:
@@ -38,6 +61,16 @@ class Pegasus:
                 "authority": "Delegated by PEGASUS",
                 "created_at": self._now(),
             }])
+        if not self.manifest_path.exists():
+            self.manifest_path.write_text(
+                json.dumps({
+                    "schema_version": 1,
+                    "system_identity": SYSTEM_IDENTITY,
+                    "created_at": self._now(),
+                    "last_initialized_at": self._now(),
+                }, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
 
     def _read(self, kind: str) -> list:
         return json.loads(self.files[kind].read_text(encoding="utf-8"))
