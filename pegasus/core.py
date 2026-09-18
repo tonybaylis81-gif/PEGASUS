@@ -101,3 +101,21 @@ class Pegasus:
             "human_authorization_required": assignee != "Pegasus",
             "created_at": self._now(),
         })
+
+    def record_event(self, event_type: str, details: dict) -> dict:
+        return self._append("commands", {
+            "id": self._id("EVT"),
+            "command": event_type,
+            "issued_by": "PEGASUS",
+            "status": "RECORDED",
+            "details": details,
+            "created_at": self._now(),
+        })
+
+    def create_exception(self, description: str, assignee: str) -> dict:
+        item = self.create_task(description, assignee)
+        item["priority"] = "EXCEPTION"
+        tasks = self._read("tasks")
+        tasks[-1] = item
+        self._write("tasks", tasks)
+        return item
