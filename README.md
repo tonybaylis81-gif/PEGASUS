@@ -49,3 +49,10 @@ streamlit run app.py
 7. Audit trail and immutable event history
 8. GitHub/Streamlit deployment workflow
 9. Integration with the Valhalla Engineering Vault
+
+
+## Portable architecture
+
+PEGASUS is now structured to travel with its operational state. The removable drive can carry the portable root containing the ledger, Vault, archive, backups, manifest, and bootstrap tools. A new computer supplies the computing environment.
+
+See `PORTABLE_PEGASUS.md` for the migration and backup procedure.
