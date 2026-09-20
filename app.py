@@ -1,4 +1,8 @@
 import os
+import tempfile
+import zipfile
+from pathlib import Path
+
 import streamlit as st
 from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
@@ -18,6 +22,31 @@ else:
     ledger_path = os.path.join("data", "LEDGER")
 
 vault_keeper = VaultKeeper(vault_path, ledger_path)
+
+
+def ingest_vault_zip(uploaded_zip):
+    """Safely unpack a user-supplied Vault ZIP into PEGASUS working storage."""
+    target = Path(vault_path).resolve()
+    target.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as tmp:
+        zip_path = Path(tmp) / "vault.zip"
+        zip_path.write_bytes(uploaded_zip.getbuffer())
+        with zipfile.ZipFile(zip_path) as zf:
+            members = zf.infolist()
+            if len(members) > 10000:
+                raise ValueError("Vault package contains too many entries.")
+            total_uncompressed = sum(max(0, m.file_size) for m in members)
+            if total_uncompressed > 500 * 1024 * 1024:
+                raise ValueError("Vault package exceeds the 500 MB safety limit.")
+            for member in members:
+                name = member.filename.replace("\\\\", "/")
+                if name.startswith("/") or any(part == ".." for part in Path(name).parts):
+                    raise ValueError(f"Unsafe path in Vault package: {member.filename}")
+                destination = (target / name).resolve()
+                if destination != target and target not in destination.parents:
+                    raise ValueError(f"Unsafe destination in Vault package: {member.filename}")
+            zf.extractall(target)
+    return sum(1 for p in target.rglob("*") if p.is_file())
 
 st.title("🪽 PEGASUS")
 st.caption("Valhalla Engineering Administrative & Command System")
@@ -48,6 +77,18 @@ with tabs[0]:
 with tabs[1]:
     st.subheader("VAULT KEEPER")
     st.caption("Inventory and reconciliation operate automatically. Moves, renames, archival, and deletion are proposals only and require human authorization.")
+
+    st.markdown("### VAULT INTAKE")
+    st.caption("Upload a ZIP of the existing Valhalla Engineering Vault. PEGASUS works on a controlled copy and does not modify your original Vault.")
+    uploaded_vault = st.file_uploader("Vault package (.zip)", type=["zip"], key="vault_zip", help="Compress the VALHALLA ENGINEERING VAULT folder on your PC into one ZIP, then upload that ZIP here.")
+    if uploaded_vault is not None and st.button("IMPORT VAULT INTO PEGASUS", type="primary"):
+        try:
+            count = ingest_vault_zip(uploaded_vault)
+            vault_keeper._audit("VAULT_IMPORT", {"files_imported": count, "source": uploaded_vault.name})
+            st.success(f"Vault imported into PEGASUS working storage. {count} files detected.")
+            st.rerun()
+        except (zipfile.BadZipFile, ValueError, OSError) as exc:
+            st.error(f"Vault import stopped safely: {exc}")
 
     if not os.path.exists(vault_path):
         st.warning(f"Vault path does not exist yet: {vault_path}")
