@@ -61,7 +61,7 @@ col5.metric("Vault Files", len(vault_keeper.register()))
 
 st.caption(f"Portable home: {os.environ.get('PEGASUS_HOME', 'local project data')}")
 
-tabs = st.tabs(["Command", "VAULT KEEPER", "Records", "Documents", "Tasks", "Sentinels"])
+tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "VAULT KEEPER", "Records", "Documents", "Tasks", "Sentinels"])
 
 with tabs[0]:
     st.subheader("Command Console")
