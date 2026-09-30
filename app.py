@@ -147,9 +147,15 @@ with tabs[1]:
             st.session_state.hydrogen_scan = scan_hydrogen()
         st.rerun()
 
+    report_markdown = build_report(scan)
+    st.markdown("### READABLE VALHALLA HYDROGEN REPORT")
+    st.caption("Click OPEN SOURCE on any intelligence item to read the original source.")
+    with st.container(border=True):
+        st.markdown(report_markdown, unsafe_allow_html=False)
+
     st.download_button(
-        "BUILD / DOWNLOAD CURRENT VALHALLA HYDROGEN REPORT",
-        build_report(scan),
+        "DOWNLOAD CURRENT VALHALLA HYDROGEN REPORT",
+        report_markdown,
         "VALHALLA_HYDROGEN_REPORT.md",
         "text/markdown",
     )
