@@ -121,7 +121,8 @@ def build_report(scan: dict) -> str:
                 f"- **Source:** {a['source']}",
                 f"- **Published:** {a['published']}",
                 f"- **Valhalla relevance:** {a['relevance']}",
-                f"- **Link:** {a['link']}",
+                f"- **Source:** {a['source']}",
+                f"- **[OPEN SOURCE]({a['link']})**",
                 f"- **Lead:** {a['summary']}",
                 "",
             ]
