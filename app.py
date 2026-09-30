@@ -7,7 +7,7 @@ import streamlit as st
 from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
 from pegasus.vault_keeper import VaultKeeper
-from hydrogen_intel import scan_if_due, scan_hydrogen, build_report, build_dated_report
+from hydrogen_intel import scan_hydrogen, build_report
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
@@ -24,15 +24,16 @@ else:
 
 vault_keeper = VaultKeeper(vault_path, ledger_path)
 
-# Hydrogen intelligence automatically refreshes once every 24 hours.
-# Reports persist under PEGASUS_HOME/HYDROGEN_REPORTS when PEGASUS_HOME is configured.
+# Hydrogen intelligence is scanned on demand from the web.
+# The always-on background watcher is handled by GitHub Actions.
 hydrogen_base = home or os.path.join("data")
 if "hydrogen_scan" not in st.session_state:
-    with st.spinner("PEGASUS: scanning hydrogen intelligence..."):
-        st.session_state.hydrogen_scan, hydrogen_new = scan_if_due(hydrogen_base, hours=24)
-else:
-    hydrogen_new = False
-
+    st.session_state.hydrogen_scan = {
+        "scanned_at": "Not yet scanned",
+        "articles": [],
+        "errors": [],
+        "feed_count": 0,
+    }
 
 def ingest_vault_zip(uploaded_zip):
     """Safely unpack a user-supplied Vault ZIP into PEGASUS working storage."""
@@ -131,10 +132,10 @@ with tabs[1]:
 
     st.markdown("### Local Intelligence Console")
     scan = st.session_state.hydrogen_scan
-    if hydrogen_new:
-        st.success("New 24-hour hydrogen intelligence scan completed and archived.")
+    if scan["articles"]:
+        st.info(f"Showing the latest local scan: {scan['scanned_at']}")
     else:
-        st.info("Showing the latest available scan.")
+        st.info("No local scan has been run yet. The background GitHub watcher remains independent.")
 
     c1, c2, c3 = st.columns(3)
     c1.metric("Items collected", len(scan["articles"]))
@@ -144,9 +145,6 @@ with tabs[1]:
     if st.button("SCAN HYDROGEN FROM WEB NOW"):
         with st.spinner("PEGASUS is scanning hydrogen intelligence sources..."):
             st.session_state.hydrogen_scan = scan_hydrogen()
-            build_dated_report(st.session_state.hydrogen_scan, hydrogen_base, "manual")
-            from hydrogen_intel import save_scan
-            save_scan(st.session_state.hydrogen_scan, hydrogen_base)
         st.rerun()
 
     st.download_button(
