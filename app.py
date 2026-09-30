@@ -6,7 +6,7 @@ from pathlib import Path
 import streamlit as st
 from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
-from pegasus.vault_keeper import VaultKeeper
+from pegasus.vault_keeper import VaultKeeper\nfrom hydrogen_intel import scan_if_due, scan_hydrogen, build_report, build_dated_report
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
@@ -21,7 +21,7 @@ else:
     vault_path = os.path.join("data", "VAULT", "VALHALLA ENGINEERING VAULT")
     ledger_path = os.path.join("data", "LEDGER")
 
-vault_keeper = VaultKeeper(vault_path, ledger_path)
+vault_keeper = VaultKeeper(vault_path, ledger_path)\n\n# Hydrogen intelligence automatically refreshes once every 24 hours.\n# Reports persist under PEGASUS_HOME/HYDROGEN_REPORTS when PEGASUS_HOME is configured.\nhydrogen_base = home or os.path.join("data")\nif "hydrogen_scan" not in st.session_state:\n    with st.spinner("PEGASUS: scanning hydrogen intelligence..."):\n        st.session_state.hydrogen_scan, hydrogen_new = scan_if_due(hydrogen_base, hours=24)\nelse:\n    hydrogen_new = False
 
 
 def ingest_vault_zip(uploaded_zip):
@@ -75,66 +75,44 @@ with tabs[0]:
             st.warning("Enter a command first.")
 
 with tabs[1]:
-    st.subheader("VAULT KEEPER")
-    st.caption("Inventory and reconciliation operate automatically. Moves, renames, archival, and deletion are proposals only and require human authorization.")
+    st.subheader("VALHALLA HYDROGEN REPORT")
+    st.caption("PEGASUS maintains a recurring online hydrogen intelligence watch and archives dated reports.")
 
-    st.markdown("### VAULT INTAKE")
-    st.caption("Upload a ZIP of the existing Valhalla Engineering Vault. PEGASUS works on a controlled copy and does not modify your original Vault.")
-    uploaded_vault = st.file_uploader("Vault package (.zip)", type=["zip"], key="vault_zip", help="Compress the VALHALLA ENGINEERING VAULT folder on your PC into one ZIP, then upload that ZIP here.")
-    if uploaded_vault is not None and st.button("IMPORT VAULT INTO PEGASUS", type="primary"):
-        try:
-            count = ingest_vault_zip(uploaded_vault)
-            vault_keeper._audit("VAULT_IMPORT", {"files_imported": count, "source": uploaded_vault.name})
-            st.success(f"Vault imported into PEGASUS working storage. {count} files detected.")
-            st.rerun()
-        except (zipfile.BadZipFile, ValueError, OSError) as exc:
-            st.error(f"Vault import stopped safely: {exc}")
-
-    if not os.path.exists(vault_path):
-        st.warning(f"Vault path does not exist yet: {vault_path}")
-        st.info("Create the portable Vault directory or set PEGASUS_HOME to the portable root.")
+    scan = st.session_state.hydrogen_scan
+    if hydrogen_new:
+        st.success("New 24-hour hydrogen intelligence scan completed and archived.")
     else:
-        if st.button("INVENTORY VAULT", type="primary"):
-            records = vault_keeper.inventory()
-            st.success(f"Inventory complete. {len(records)} files registered.")
-            st.rerun()
+        st.info("Showing the latest archived hydrogen intelligence scan.")
 
-        report = vault_keeper.reconcile()
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Registered", report["scanned_files"])
-        c2.metric("Duplicate Groups", report["duplicate_groups"])
-        c3.metric("Misfiled", len(report["misfiled_files"]))
-        c4.metric("Numbering Drift", len(report["numbering_drift_candidates"]))
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Items collected", len(scan["articles"]))
+    c2.metric("Sources scanned", scan["feed_count"])
+    c3.metric("Source errors", len(scan["errors"]))
 
-        search_term = st.text_input("Search Vault", placeholder="filename, project, Codex, patent...")
-        if search_term.strip():
-            st.dataframe(vault_keeper.search(search_term), use_container_width=True, hide_index=True)
-        else:
-            st.dataframe(vault_keeper.register(), use_container_width=True, hide_index=True)
+    if st.button("SCAN HYDROGEN NOW", type="primary"):
+        with st.spinner("PEGASUS is scanning hydrogen intelligence sources..."):
+            st.session_state.hydrogen_scan = scan_hydrogen()
+            build_dated_report(st.session_state.hydrogen_scan, hydrogen_base, "manual")
+            from hydrogen_intel import save_scan
+            save_scan(st.session_state.hydrogen_scan, hydrogen_base)
+        st.rerun()
 
-        with st.expander("Reconciliation findings"):
-            if report["duplicates"]:
-                st.write("Duplicate groups")
-                st.json(report["duplicates"])
-            if report["misfiled_files"]:
-                st.write("Files outside the controlled top-level sections")
-                st.write(report["misfiled_files"])
-            if report["numbering_drift_candidates"]:
-                st.write("Numbering-drift candidates for human review")
-                st.write(report["numbering_drift_candidates"])
-            if not any((report["duplicates"], report["misfiled_files"], report["numbering_drift_candidates"])):
-                st.success("No current reconciliation exceptions detected.")
+    st.download_button("BUILD / DOWNLOAD CURRENT VALHALLA HYDROGEN REPORT",
+                       build_report(scan), "VALHALLA_HYDROGEN_REPORT.md", "text/markdown")
 
-        with st.expander("Human-authorized actions"):
-            source = st.text_input("Source path")
-            destination = st.text_input("Destination path (for moves/renames)")
-            action = st.selectbox("Proposed action", ["MOVE", "RENAME", "ARCHIVE", "DELETE"])
-            if st.button("Create Authorization Proposal"):
-                if source.strip():
-                    proposal = vault_keeper.propose_action(action, source.strip(), destination.strip() or None)
-                    st.warning(f"Proposal {proposal['id']} is awaiting human authorization. No file was changed.")
-                else:
-                    st.warning("Enter a source path first.")
+    st.markdown("### Latest Hydrogen Intelligence")
+    st.dataframe(scan["articles"], use_container_width=True, hide_index=True)
+
+    if scan["errors"]:
+        with st.expander("Source connection errors"):
+            st.write(scan["errors"])
+
+    st.markdown("### Archived Reports")
+    report_dir = Path(hydrogen_base) / "HYDROGEN_REPORTS"
+    if report_dir.exists():
+        reports = sorted(report_dir.glob("VHR_*.md"), reverse=True)
+        for report_path in reports[:20]:
+            st.write(report_path.name)
 
 with tabs[2]:
     st.subheader("Record Ledger")
