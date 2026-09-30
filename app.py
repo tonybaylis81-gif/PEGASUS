@@ -6,7 +6,8 @@ from pathlib import Path
 import streamlit as st
 from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
-from pegasus.vault_keeper import VaultKeeper\nfrom hydrogen_intel import scan_if_due, scan_hydrogen, build_report, build_dated_report
+from pegasus.vault_keeper import VaultKeeper
+from hydrogen_intel import scan_if_due, scan_hydrogen, build_report, build_dated_report
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
@@ -21,7 +22,16 @@ else:
     vault_path = os.path.join("data", "VAULT", "VALHALLA ENGINEERING VAULT")
     ledger_path = os.path.join("data", "LEDGER")
 
-vault_keeper = VaultKeeper(vault_path, ledger_path)\n\n# Hydrogen intelligence automatically refreshes once every 24 hours.\n# Reports persist under PEGASUS_HOME/HYDROGEN_REPORTS when PEGASUS_HOME is configured.\nhydrogen_base = home or os.path.join("data")\nif "hydrogen_scan" not in st.session_state:\n    with st.spinner("PEGASUS: scanning hydrogen intelligence..."):\n        st.session_state.hydrogen_scan, hydrogen_new = scan_if_due(hydrogen_base, hours=24)\nelse:\n    hydrogen_new = False
+vault_keeper = VaultKeeper(vault_path, ledger_path)
+
+# Hydrogen intelligence automatically refreshes once every 24 hours.
+# Reports persist under PEGASUS_HOME/HYDROGEN_REPORTS when PEGASUS_HOME is configured.
+hydrogen_base = home or os.path.join("data")
+if "hydrogen_scan" not in st.session_state:
+    with st.spinner("PEGASUS: scanning hydrogen intelligence..."):
+        st.session_state.hydrogen_scan, hydrogen_new = scan_if_due(hydrogen_base, hours=24)
+else:
+    hydrogen_new = False
 
 
 def ingest_vault_zip(uploaded_zip):
@@ -75,21 +85,63 @@ with tabs[0]:
             st.warning("Enter a command first.")
 
 with tabs[1]:
-    st.subheader("VALHALLA HYDROGEN REPORT")
-    st.caption("PEGASUS maintains a recurring online hydrogen intelligence watch and archives dated reports.")
+    st.subheader("VALHALLA HYDROGEN COMMAND")
+    st.caption("PEGASUS is launched on the World Wide Web through Streamlit. The background hydrogen watch runs independently through GitHub Actions.")
 
+    # Remote watcher controls. Set these in Streamlit Secrets:
+    # GITHUB_TOKEN = a GitHub token with Actions write access to this repository.
+    github_token = st.secrets.get("GITHUB_TOKEN", "")
+    repo = st.secrets.get("GITHUB_REPOSITORY", "tonybaylis81-gif/PEGASUS")
+    workflow_file = "hydrogen-watch.yml"
+
+    online_col, alert_col = st.columns(2)
+    online_col.success("🟢 PEGASUS WEB CONTROL: ONLINE")
+    if github_token:
+        alert_col.success("🟢 HYDROGEN WATCH: REMOTE CONTROL ENABLED")
+    else:
+        alert_col.warning("🟡 HYDROGEN WATCH: add GITHUB_TOKEN to Streamlit Secrets for remote launch")
+
+    if github_token:
+        if st.button("🚀 LAUNCH HYDROGEN WATCH NOW", type="primary"):
+            import json
+            import urllib.request
+
+            url = f"https://api.github.com/repos/{repo}/actions/workflows/{workflow_file}/dispatches"
+            payload = json.dumps({"ref": "main"}).encode()
+            request = urllib.request.Request(
+                url,
+                data=payload,
+                method="POST",
+                headers={
+                    "Authorization": f"Bearer {github_token}",
+                    "Accept": "application/vnd.github+json",
+                    "X-GitHub-Api-Version": "2022-11-28",
+                    "Content-Type": "application/json",
+                    "User-Agent": "PEGASUS-Valhalla-Web-Control/1.0",
+                },
+            )
+            try:
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    if response.status == 204:
+                        st.success("🚀 PEGASUS HYDROGEN WATCH LAUNCHED. GitHub is now running the scan.")
+                    else:
+                        st.warning(f"GitHub accepted the request with HTTP {response.status}.")
+            except Exception as exc:
+                st.error(f"Launch failed: {exc}")
+
+    st.markdown("### Local Intelligence Console")
     scan = st.session_state.hydrogen_scan
     if hydrogen_new:
         st.success("New 24-hour hydrogen intelligence scan completed and archived.")
     else:
-        st.info("Showing the latest archived hydrogen intelligence scan.")
+        st.info("Showing the latest available scan.")
 
     c1, c2, c3 = st.columns(3)
     c1.metric("Items collected", len(scan["articles"]))
     c2.metric("Sources scanned", scan["feed_count"])
     c3.metric("Source errors", len(scan["errors"]))
 
-    if st.button("SCAN HYDROGEN NOW", type="primary"):
+    if st.button("SCAN HYDROGEN FROM WEB NOW"):
         with st.spinner("PEGASUS is scanning hydrogen intelligence sources..."):
             st.session_state.hydrogen_scan = scan_hydrogen()
             build_dated_report(st.session_state.hydrogen_scan, hydrogen_base, "manual")
@@ -97,8 +149,12 @@ with tabs[1]:
             save_scan(st.session_state.hydrogen_scan, hydrogen_base)
         st.rerun()
 
-    st.download_button("BUILD / DOWNLOAD CURRENT VALHALLA HYDROGEN REPORT",
-                       build_report(scan), "VALHALLA_HYDROGEN_REPORT.md", "text/markdown")
+    st.download_button(
+        "BUILD / DOWNLOAD CURRENT VALHALLA HYDROGEN REPORT",
+        build_report(scan),
+        "VALHALLA_HYDROGEN_REPORT.md",
+        "text/markdown",
+    )
 
     st.markdown("### Latest Hydrogen Intelligence")
     st.dataframe(scan["articles"], use_container_width=True, hide_index=True)
