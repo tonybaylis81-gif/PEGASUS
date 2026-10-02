@@ -1,21 +1,17 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-02T05:44:09.197403+00:00
+**PEGASUS alert:** 2026-10-02T16:47:10.167832+00:00
 
-New directly relevant items: 4
+New directly relevant items: 3
 
-## Max Power Mining Adds Aurora Project Permits Next to Lawson, Increases Permitted Land Position in Saskatchewan by More Than 50% to 2 Million Acres - juniorminingnetwork.com
-- Google News - Saskatchewan | 2026-07-24T12:28:58+00:00
-- https://news.google.com/rss/articles/CBMi0gJBVV95cUxQVm9OcFpjalkxOE1lSFdYckJVNkdRd0hMajd6T19GUE5NNk9nNEpKWnpCVjN0aE1UNTlWY3ZPdDRJUE53dFl2OVJrNTdXdkFyMDdUbXRDRVBoUDZIZjNIQ2p1OVg5WDlra01iRDZaSGtWV0VHd2dTMU5xT3JUQjRYdEUzZjE3TDdCQ1p6NUtnYmtBcndQaDJoRjZ6SFN1c1JkXzJibHh6UWJFWUNDNVdVT2NOSlk2VVZPRi1VLUYyWllGall5ZVRoaV9Hc3VsSUFfZzVRYk8zcGlxRWFQOUtfdFlnSWQtV01YSkhXQWRqSVhJRFUxZ2dzM3pkOUJCVUhqX0Noa3poMlR4Zm5mTDFWakU2NkdXUHlxd25jVnhTUExWYWFLWDZZOEZlNEtoZUFnNFRYZjkxOTF0UzdmOEdGeGRENG1XTE1OMkZneTQ0dmhfdw?oc=5
+## MAX Power - Lawson 5 Well Targets Scale Potential of Current Natural Hydrogen Discovery Area and Broader Genesis Trend Extending >475 km to North Dakota - hydrogen-central.com
+- Google News - Natural Hydrogen | 2026-09-22T08:14:40+00:00
+- https://news.google.com/rss/articles/CBMiiwJBVV95cUxQLVVhREpxTjZtcUdEWS0tZ29XVHd0Skd6ZGl6bjBzSFBKQmJGVnJLTkpoOHYxallhNDdSaVVMdkNFeUhLRTlwT0F6dlZodTRQeFFtVUYzSXhPYV93Z21sTkRBTjlxZW56d21TX1ZXWG1aR3hBMXRHeV9acm9qSEVJVVpXZDdTT3dYQ3pLNjgzc09Za1JkTnBHRGRZNXNfQ2FMd1lxUlFDUWdBempLN2NqbXBmcnpaZmhwaDhUSnFubi1QN1pSZ2U1X3dRX3dVWW92MDBRcldIZkpTWTVXa0twM2p5dGZYajA0amkyM1c4S3FIVlh6U0FZLVdoMV81czVlUFdzT0ZqWkRTQm8?oc=5
 
-## U of A chemist is on the verge of turning ocean water into an abundant hydrogen source - ualberta.ca
-- Google News - Fuel Cells | 2026-04-23T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMisAFBVV95cUxNbkM0ZktRR1hQX1BKeFFvUThaM1BCYno1akJQUFJHQnJaalNwclJ5VlN2Mk5nR0puaVRCNGZjcU43YzhvOUFQN1p1VmR2ZDB2anlYeGEtNVF0QWo2U3QtYjFfUFozYmZmc21wUVJ1MzRfZzYyYS1QSnBYT1VjR2dGUEt3UzBuX0lhaXBBbXlBc0ZYRnJJWlJxcnhRQm1lM1JFWUlwZFZrUHQzNXB0aXZHSg?oc=5
+## Max Power Confirms Basin-Scale Natural Hydrogen Potential in Saskatchewan with Bracken Well, 325 Km from Lawson Discovery - hydrogen-central.com
+- Google News - Saskatchewan | 2026-07-08T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMi5AFBVV95cUxQYy1zQmlIQnd0Z2NkU3p3ZnNURG4yUWVtc2Jwb1VmaVNqRHlEVVBJMzE2TUJ6dEkzMFZlUjl4amdTOUZqUUVNdklXcUdGUXpjdW1kb0xEZURyUlI1Z3p2MTF2QUFaNmJ3UEtpaTZyQUU3YXMtTG1UVnNuWGJWRnZfWGxSWm5tajVFcW9NWW9ONUZfeVM3VkltMHQ0c0lIY1NndUVUNDJYMlFtOG0tRm5TRnFfMHVucEdxLUM0QmRjamowTTY1X0F2cjlwY29qcHFBN0VqRElJODNlWkN4ckxqYXV6T2k?oc=5
 
-## Canada’s first natural hydrogen well drilled in Saskatchewan - ctvnews.ca
-- Google News - Saskatchewan | 2025-11-27T08:00:00+00:00
-- https://news.google.com/rss/articles/CBMinwFBVV95cUxNdVpjVkRpeTc4VGF3WFNERkhGSkZUbGxmekVvQ3ZRX0Y2MnJRTGNJOVJJYUFDaTBKZDhUZkJVWlJEbmpuUHowZGpNUFJ0bEoxXzRuaFNONTFRdUdFUnlHX3pucGJuSnRIQlI1TTBaQ0xVQ21OLXM1aGt1M3NudkhJTmxFOGd4dWlIRm92R1g4R1lRUFVJMkdLZDAtdjdEV2s?oc=5
-
-## North Dakota, South Korea enter partnership in pursuit of carbon neutrality - Grand Forks Herald
-- Google News - North Dakota | 2024-10-14T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMisgFBVV95cUxNSjhEQjRibU4tN1M3ZHdLREdwYVdiY3BoYXhFV1BlbGZlRURBbWV5VmgtT0V5RElfTy05bHZzZEhkSXl2VXVpWURoWXgta0xRVDRmRklhSWRXWXhFLXlTSkduMFdLdkFHRnh3UE1PTHFrbktGN0toS3FIb25sUm5DZEl2aHRjLWR6ZDRvSzQ1RHVaUmNxUGJubHJUS3h4QmkxUmZCZFpYdEdlOXpVdXVMUVBn?oc=5
+## North Dakota addresses trucking issues in State Freight and Rail Plan - landline.media
+- Google News - North Dakota | 2023-02-07T08:00:00+00:00
+- https://news.google.com/rss/articles/CBMimAFBVV95cUxPX1RaTFNRNi01a29Ud0liVk9Sa3d2bTE5VmxoM3ZKZUdCamUxT1ExcnJPZ1NzX0dWd1VrTDUzNzhqdTZCdjNKb0h5LUtxSTIxNkJ6YUY0c3BpaEI3cUFpWVppdFdHQmJBWnJmaEoyVlNjUGx4aG1pX1VrQ0s4c0Y4SEItRi05dnhHY3UwYmlocWpZY2tHQjVfYw?oc=5
