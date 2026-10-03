@@ -1,13 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-03T15:13:25.701593+00:00
+**PEGASUS alert:** 2026-10-03T18:43:15.852838+00:00
 
-New directly relevant items: 2
+New directly relevant items: 1
 
-## Max Power Confirms Basin-Scale Natural Hydrogen Potential in Saskatchewan with Bracken Well, 325 Km from Lawson Discovery - ca.finance.yahoo.com
-- Google News - Saskatchewan | 2026-06-30T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMihgFBVV95cUxQNm5VazhDZUJnNl9uMGxNUlBHZnZ6UXdaRlNPVWROdXNyU2lpeFFWcFRDeFo5U1ZwdXZDUFEweHoyWVNVWjRaYjJEQ3RjSEFBWU1Zd0NxUzRsRXRiSlNGY2lGMDhCVm5mRWE4WDBNUGpVSE9aUkFzSk5vWXJvY05Mc0dnazlpZw?oc=5
-
-## Saskatchewan’s first ever helium public offering adds $15.9M to provincial coffers - 650 CKOM
-- Google News - Saskatchewan | 2026-06-26T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMiswFBVV95cUxPWjVPMUVxazMxeS1tQmtCNjNpeklCQjBFZmE5YzZEZTZPdEpJYnZkSlNxU1ZndDVYcHRRd25BblBzRXpyZWxjSmdXbU5vREZHQjdSb0M3ZlltM1lFeTVVa3BDWmQtd1VJSnlCclZhZENldzM0TlhJOFRRWHNoZnR6d3p5YklsNjBDOU9sbU9YaDhRNXY5Rl96eEZDSWFGTzJmUzd1MkZJb0h0YW5iLVdFZDVRSQ?oc=5
+## Max Power signs MoU with Terravolt to explore natural hydrogen-powered data centers in Saskatchewan, Canada - datacenterdynamics.com
+- Google News - Saskatchewan | 2026-06-02T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMi5AFBVV95cUxPV3ZoSzQ2c2hnalJtZHJhVEhSelNHM21KM25zOUhrSEFkajZkTEk4S3ZBb2dFX193d2Y3eUJiUzJpNWVJUklhYnBMLWhyMTZMM3AxT1JicGxnTmh4cVhKRW5ZMEtPaGtVcGx4cjVOUkxNZ2s0M0ZaTUo4WkNVeEFXRXJmSjcyVVF6RENCRDA5UHgzUWhfN2c3d0JZWWJ6dS1UdVVFLUpZa0Vxa050Q19TZUJmSlV6cE1zemRRUHQ1OGJScFhZY204dmo4XzdUVURrY0ZQUUQ4UUZmRTdXQk5yTS02dm8?oc=5
