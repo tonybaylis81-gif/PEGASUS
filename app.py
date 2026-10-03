@@ -8,6 +8,7 @@ from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
 from pegasus.vault_keeper import VaultKeeper
 from hydrogen_intel import scan_hydrogen, build_report
+from vast_cash_monitor import run_vast_cash_sentinel, VAST_CASH_URL, VAST_CASH_REPO
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
@@ -34,6 +35,9 @@ if "hydrogen_scan" not in st.session_state:
         "errors": [],
         "feed_count": 0,
     }
+
+if "vast_cash_sentinel" not in st.session_state:
+    st.session_state.vast_cash_sentinel = None
 
 def ingest_vault_zip(uploaded_zip):
     """Safely unpack a user-supplied Vault ZIP into PEGASUS working storage."""
@@ -84,6 +88,51 @@ with tabs[0]:
             st.success(f"Command logged: {item['id']}")
         else:
             st.warning("Enter a command first.")
+
+    st.divider()
+    st.subheader("⚒️ VAST CASH COMMAND & SENTINEL")
+    st.caption("Pegasus can launch the VAST CASH web application and perform a read-only health check of the application, GitHub repository, and optional Alpaca PAPER account.")
+    vc1, vc2 = st.columns(2)
+    with vc1:
+        st.link_button("🚀 OPEN / RUN VAST CASH", VAST_CASH_URL, use_container_width=True)
+        st.caption(f"VAST CASH application: {VAST_CASH_URL}")
+    with vc2:
+        if st.button("🛡️ RUN VAST CASH SENTINEL", type="primary", use_container_width=True):
+            with st.spinner("PEGASUS is checking VAST CASH..."):
+                st.session_state.vast_cash_sentinel = run_vast_cash_sentinel()
+
+    sentinel = st.session_state.vast_cash_sentinel
+    if sentinel:
+        state = sentinel["state"]
+        if state == "GREEN":
+            st.success("🟢 VAST CASH SENTINEL: GREEN")
+        elif state == "AMBER":
+            st.warning("🟡 VAST CASH SENTINEL: AMBER")
+        else:
+            st.error("🔴 VAST CASH SENTINEL: RED")
+
+        web = sentinel["web"]
+        gh = sentinel["github"]
+        paper = sentinel["paper"]
+        a, b, c = st.columns(3)
+        a.metric("VAST CASH WEB", "ONLINE" if web["online"] else "OFFLINE")
+        b.metric("VAST CASH CODE", gh.get("sha") or "UNAVAILABLE")
+        if paper.get("configured") and paper.get("connected"):
+            c.metric("PAPER API", "CONNECTED")
+        elif paper.get("configured"):
+            c.metric("PAPER API", "ERROR")
+        else:
+            c.metric("PAPER API", "NOT CONFIGURED")
+
+        with st.expander("VAST CASH Sentinel details"):
+            st.write({
+                "Web monitor": web,
+                "GitHub monitor": gh,
+                "Alpaca PAPER monitor": paper,
+                "Repository": VAST_CASH_REPO,
+            })
+    else:
+        st.info("VAST CASH Sentinel has not been run yet.")
 
 with tabs[1]:
     st.subheader("VALHALLA HYDROGEN COMMAND")
