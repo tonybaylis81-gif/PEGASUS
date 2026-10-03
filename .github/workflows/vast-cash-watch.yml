@@ -1,0 +1,31 @@
+name: PEGASUS VAST CASH Watch
+
+on:
+  schedule:
+    - cron: "17 16 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PEGASUS
+        uses: actions/checkout@v4
+
+      - name: Run read-only VAST CASH Sentinel
+        env:
+          PAPER_API_KEY: ${{ secrets.PAPER_API_KEY }}
+          PAPER_API_SECRET: ${{ secrets.PAPER_API_SECRET }}
+        run: |
+          python vast_cash_watch.py | tee vast_cash_watch_result.json
+
+      - name: Commit watch state
+        run: |
+          git config user.name "PEGASUS Sentinel"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/LEDGER/vast_cash_watch_state.json
+          git diff --cached --quiet || git commit -m "Record VAST CASH sentinel state"
+          git push
