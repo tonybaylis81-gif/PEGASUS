@@ -1,29 +1,17 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-04T00:27:09.990986+00:00
+**PEGASUS alert:** 2026-10-04T12:47:16.278504+00:00
 
-New directly relevant items: 6
+New directly relevant items: 3
 
-## Max Power Extends Saskatchewan Natural Hydrogen Play With Lawson 5 Step-Out - theglobeandmail.com
-- Google News - Natural Hydrogen | 2026-09-30T18:48:00+00:00
-- https://news.google.com/rss/articles/CBMi8wFBVV95cUxNRklPRVljSFJPWUtTSDhhVnFIVlNHWEticmEzYzNSb1drLWI1Y3lCYVk2YlFRVkRla1pSQ210dFdnV3hVclhoSTVkaVNtSy12Uy1lUXJYZndiRGFvb0ZudmtpOUhCekFaNHIwTGdZRVFFeGxXMTgxZUJOcFdSSWlQd3N3azFTTEptS3BIVTF6S1V6S3R6V25ZWTd6Q1Y1OEVXUUZMbm40aXV5X3hGYS1tb0Mzd3lncVRUcVRobUVHSVI4Y2xPYmdpMkpBNTJaclByWmNmZ2x4Qk9Jdmpud0tKWWlsUXVvQXFCX01OTlFoclJjbTA?oc=5
+## MAX Power broadens Saskatchewan hydrogen - metaltechnews.com
+- Google News - Saskatchewan | 2026-06-30T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMirAFBVV95cUxQLTlsQXUzVWszS3llb0Q5ajN6UndIODVaTWFMVklsemt1T0h4bEJxelZmMFAyc0lpck9veHY4MXgwZ2xCdG1fUEtCTXJIS2kyMU9xbnAzdUhvNW1DS3hDT19QYUVxT3d5eEYzT18wd2hXQzdaSlhKbW9jTmk0YXI5c2EyRHU1LWI3SzBOTkp3LTJjSlI5c2EzUi13Rkg4WXFKZm1WUW1NTkRiOG9f?oc=5
 
-## Max Power Signs MOU with City of Moose Jaw to Advance Natural Hydrogen Commercialization Within Saskatchewan’s Largest Industrial Corridor - theglobeandmail.com
-- Google News - Natural Hydrogen | 2026-09-30T06:20:22+00:00
-- https://news.google.com/rss/articles/CBMixgJBVV95cUxOUnFVTHJ4eElKS0o0bGdISWd1eXNQLTRnUDN2V2dSZUYyLW5rRUpNSjAyUGVDRllPNFFPNXBUa2FBemF4cEllenRsNzRVd1ZZRU5VNGNMbVNpdGRfaGxuQ1E0dW5QZVlEajB0YnpTbmJXdFY5VFRMZ05aNy1ZZ3dyYTlVTmlvUXVVMnEtMjFKclFDa0NlRnlMejZqMG1FMExLNmt0WTRtcU1CbjhGRjVnUWdPTVBRMG1FUVplZjl2dEVPdkVnN21rU0IzTHV0Z0luaWFWbE04NHQyOVY0cWdoMWFybVhtMExoWU1nODFVTFgyNy1STGZoVGJ0T0JVaHB4cXJQbjhyVXhmdEwzRTNzd0VRSWh2VWJtUm1ZYWNpN2NMNDVmcDZFRGc4V3hKQnhMekdUcVdTS2h0MGhFVUhQa0d3WmppQQ?oc=5
+## Study finds Alberta has ‘exceptional potential’ for rare natural hydrogen - abenergycentre.ca
+- Google News - Hydrogen | 2026-06-04T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMivgFBVV95cUxPN0F0c1FXOUdrVGlfdm1zXzBCRjRiS3M2U2htcXc0eFBEN3ZqczE1N29LcFdiMDJ1Ny1PZHJiNkhrak9rX1l2akpKRTBlU29iSWRXdTZaNlVLWDh5YTdyaVo1U01pRzJuQnEtYk5HdkpiWFUyQTZ2RjRCenRLYnBKeXhlUkRRWFExN1R0Mk1DS2FtT0JoSGlGTXJiekF1dDhvN0tQbC1YN0MxWl8xclFSMlF1V2doVDl5TDBzUGh3?oc=5
 
-## MAX Power’s Lawson 5 Well Targets Scale Potential of Current Natural Hydrogen Discovery Area and Broader Genesis Trend Extending >475 km to North Dakota - theglobeandmail.com
-- Google News - Natural Hydrogen | 2026-09-21T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMi1wJBVV95cUxQc2tWQ3FPTjZBdi1kbkpGYW5sUm9vWmR1RTFxWmQ4bWJlSFF6eURfWTBmenFmWDdHVURiUWNiaE5KV1lRUVBnR1VFempqS2ZFTlo4Wlo1Tlo2S0dSUEtBWTFIaHpkRm5hTEdBX3J2RVhVVl93SzgxMVZZMDZGQzNVX0R5d19uZUMzN2pQRzRZTnVDSUMxMWRMNS1hRnZjNGVLeVZZczFKYS1WbzlJY1h0QTlBdzJHdDFxdFoxM0ZxQmpIYmE5ZnFDYUE5b21sbGJ4UGpqM2wwZFU1aGY2MmNqSU5BMUxjZWpabmZuSlc4aEFwZjdpUGUxakVRTVI5S2pKZzBlX29QMHhOQWxGRmJOYnhkSHNYTmlqMllrMkFkblJDbkVBUWZ3MUxBZUlrU0RpVTlNOEl5aF9VYzhjdlItZjN2V3kxWDl3Q1JtLUFSeThQTWNTWi1R?oc=5
-
-## Saskatchewan Natural Hydrogen Story Surges 10% on High Readings - theglobeandmail.com
-- Google News - Natural Hydrogen | 2026-07-27T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMi3wFBVV95cUxPV19Oa0hvZlpnTUpPUWlZYUVRb0VldG1uenI0RFFMV3JNY2pnT21hUWcxbnRic2QxSUk4WDIwVmwwT2VEQzBaWDN1ZmctV01waHkwRXBYVV9OTXptZldiWlVGcjBBZWJzQjFyN2lHbVlKWmJhejJyRi1IMU5NSXU2OFVQXzlpWkhYeDJuV0VzQ21DdnZjQVA1VWVkLTl6UnEwNEwtXzMzYjE5dVlwSEUzdUktbUN0RUtfaUhoLWJJenNmOFFXR1FOSFhmYktIVFhGTWw0TkY5QzhIOFJuaTJZ?oc=5
-
-## MAX Power Adds Aurora Project Permits Next to Lawson, Increases Permitted Land Position in Saskatchewan by More Than 50% to 2 Million Acres - theglobeandmail.com
-- Google News - Saskatchewan | 2026-07-24T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMixgJBVV95cUxPdUlkcjFiU3VSVzZnOXFJOTBzQ1ktbWVPUTBCZDVUeWZrY2ZydXUyQTI0RWhRcVdHTTFZVlBtYjktOEE5RzlhV0RYMUcyaXRQVW1RSWdfNzViSURRajBtOVZ6ZkxqRC1lM3RkZU05Zm41amlWaEdSN3YwSGdRQ3RMRXp6RF9LNWdETXBKLXZpUThaX2hsOTBvWkU0THJ3bjZTU1BneDNteE1Ca1l5ZlFZNThObEN3Wl9jS0xDMlB6THRIV21mOU1RYm5RTXFWZXhmNVVXdWpSODVkbHE2Vl9SV1daSEgyOE1ZY0l6b0RaTG8zR0traUVsVkM5U0RPM1I2bUFCOXR1WENFWGJpNDNpMk9IZ3VYRHk2TTZ2NWFxVDVjZVRGdmRFSlIwQjMzcTF2UVJybEFqamNjdHFXUnhtZEpGU0hldw?oc=5
-
-## Max Power Appoints Tony Van Burgsteden as CFO to Support Commercial Advancement of Saskatchewan’s First Subsurface Natural Hydrogen System - theglobeandmail.com
-- Google News - Saskatchewan | 2026-05-04T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMixwJBVV95cUxPTkxtTjFrOW8yZS1TXzJmazNvTW5oV2hMUnJuS1ZjUEVNYkQ2dGVBcmw1THVDamw1WGdhR3Jrb3JoWHpVdjFVZ3REQ2k5aUlQRmVWNURYUkxqSFF5Y3VtVmg2NjBBc2VkM0NncmlSbkJUTm9HWThaNmVPV3pmb3o1QlE2WC1MbExQTjVuQ3JIVFdzeGZCNzluZTFUSjVTd1pfTVhHZkpDYVd5Si1wUzZOU29zaFo1NURIdXVFM1FKdmJ2VUplMGJndllRYmZFeDdyWnJEa256eE55QnhWSVVDdVdQZ2JoTDVaMElROW53RDBQbVBjVXpFc2tWVWh1ZDlKLTZJeDRyV1pENHN1YlpxZ1BvUEN6ZnltZy12NmZ4NmhfZnc1dnp1anhsSjdHejc1RmZfT1lzRkZBWnlNYWpHNER1TkFmTWM?oc=5
+## White hydrogen discovered in Saskatchewan - metaltechnews.com
+- Google News - Saskatchewan | 2026-01-30T08:00:00+00:00
+- https://news.google.com/rss/articles/CBMirgFBVV95cUxQOWYwUENjR19iazN3aFZMV0N2cFJuV3A2d1ZzTXptckxOdWh6UjJQQ1ltYUI4clpaeUVaVTJFRHNOcjJvTnNWRUgxQXF6czZSOF9JN1o5WTRtc0RRclQ5WlNfR2VPdHdZal9YLVo0UVVEUHRCdm1JQ084RDh0cWRYWDd5ajVBNzZlMkIxS1BRQXAzMHhpbXJJMTdFSmJkZHRDR0ROenU2elNlUVBSdUE?oc=5
