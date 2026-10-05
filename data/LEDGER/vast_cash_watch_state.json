@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-05T22:36:28.323020+00:00",
+  "web": {
+    "online": false,
+    "message": "HTTP Error 303: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nSee Other"
+  },
+  "github": {
+    "online": true,
+    "sha": "e78d2c232535",
+    "message": "Fix MAXPROFIT NoneType error by storing ranked Top 10 before decisions"
+  },
+  "paper": {
+    "configured": false,
+    "message": "Alpaca PAPER credentials are not configured for PEGASUS."
+  }
+}
