@@ -1,9 +1,13 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-07T09:20:59.866597+00:00
+**PEGASUS alert:** 2026-10-08T15:40:29.511854+00:00
 
-New directly relevant items: 1
+New directly relevant items: 2
 
-## 44 Rigs drilling in Saskatchewan on Oct. 6, targeting oil, hydrogen, lithium and potash - Pipeline Online
-- Google News - Storage | 2026-10-07T06:24:43+00:00
-- https://news.google.com/rss/articles/CBMirwFBVV95cUxPR3lETkFIYUo3MGpRWVlSNmRPX0xxZDZCMFo2bjhQeGt1bjZYLVR0cUpaOUE2SkJnUVE5bUpJUFRaOVpQY0d1bno5VmFLNHpMSWU0d05OQjFiZFBMQkZTb0FEeU00eWd4eXFoUVFwOXRhTS12akpSR21nREozQ0t6VEM0UDVSNkxYSVhFWTZaTU9RdTdkS1VNbG5aMFZ0elVzTEZsU3psWHZfbURERC1r?oc=5
+## Approval of sour gas pipeline permit without consultation triggers Alberta court battle over safety setbacks - CBC
+- Google News - Storage | 2026-10-08T12:34:23+00:00
+- https://news.google.com/rss/articles/CBMimgFBVV95cUxNY0JoOEVlc3pHNGJ5VC0zLU5YMUJQam0tQ25fc05scUhIU0dJVm5vdm9iM2R2MEY2QUotWWFNNnllUENEcGxTLUg0R0ZZTW9IODQyU1oxdUF5elk5dW1Td29FcmNIS3RyZVRYanFUekd4YXdIc2dadXBxVS10Y0xENkUwVGN4S3o0Qjk0Z1I3TW9TX0hXLWhGa2dB?oc=5
+
+## MAX Power’s Lawson 5 Well Targets Scale Potential of Current Natural Hydrogen Discovery Area and Broader Genesis Trend Extending >475 km to North Dakota - Resource World Magazine
+- Google News - North Dakota | 2026-09-21T18:18:59+00:00
+- https://news.google.com/rss/articles/CBMiiAJBVV95cUxNSUUtZE1wT1lFTFFEVExmbUF5bU4yRmx4QkpLMW5WY3Y0UlRpZ28xcVdpYUNPTzNrLVVfLU1fT0JFeWtvbldIU1Uyc3Q3ckp0Q05aSnhOLUJnTTJMblRnVE53WTRiR3NYM19GYUpQMHgyUzlMM0l2U2tGNU5RM3JvZ2FTN2M1WUcwLWJqZTZURndJQnJ1RjhGV283SnpySlVHNUFqMHZ2Ri16YzVMUEdPeTBVaE5kajFVaWRCR2N0bE83ZDBqTzh0NGxwS1YzUXRwSS1ISVdRVk8wUUVmU0JjZnMydHh1T1c3Qk5BUHVBaUh5X2cyQ2tPT1lSODFIdkVzWnE4UVRRemQ?oc=5
