@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-12T00:24:13.120732+00:00
+**PEGASUS alert:** 2026-10-12T15:58:09.893222+00:00
 
 New directly relevant items: 1
 
-## High Hopes for Hydrogen in Alberta – Resource Works - EnergyNow
-- Google News - Storage | 2026-10-11T19:19:06+00:00
-- https://news.google.com/rss/articles/CBMihgFBVV95cUxOQWpsc2pzcjUwOWxLeThDeUNjaGh3M1V1U1hSRHFjUHRqVWN4bTJZc0NHNDlqVXFQNE91Uk5NOTBrSzZKRXlYNkZDaXBsM1JMMEFvSGpRU1RUdnhjaEtXbFBobFQxbjdzU0ZUbTl0YlRjd3luNVlWTEs4S1lOMXFXQTdpOUFBdw?oc=5
+## Clean Energy Week, North Dakota-style - Washington Times
+- Google News - North Dakota | 2024-09-24T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMijwFBVV95cUxONHNCZWM1Z1lxZFI5Y0x2N2ZRWENaOGlqcjBBUmlrdG1yODJqZ2pvYmVoYkhsMDFOMXk0SUk5YS1BRDFGbExCWENGQmc5S1UyZ2RiQlZjc1FSNDVrd0l4QmRqVjRRT3poYkFWd2xMMDYza2s0SDNCRFU3VU5mSHFQNVFfNkRBdzRiTURZUTR6VQ?oc=5
