@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-13T03:27:58.988346+00:00
+**PEGASUS alert:** 2026-10-14T18:02:08.966606+00:00
 
 New directly relevant items: 1
 
-## Max Power Targets Basin‑Scale Natural Hydrogen Across Saskatchewan’s Genesis Trend - The Globe and Mail
-- Google News - Natural Hydrogen | 2026-09-22T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMi8wFBVV95cUxQUElJQ1cxTGJTRVhlam5qY3lkWXdfNV9idEdHN0FRX2RkeG5xUEd6SUU0WXZiVkRra2NORF9VVy1sdmtFdVhRQTZEMjMzZS1hX19JYTR4WWVjY3d1WXNyWXZMZmUxV3RjOTJZQ2VsX25pT1puSGVYbUxBMEVWRHdNcnI2bVFSS252WER5ZmI4VEExd0w3UWcwYjloSm1hcEJjVkY0OW9qUDlVRm83R0pvcVFObUhZNG1Vd0ExOVpyelJvMjhtYms1eUxmck5VSFZHZW9TcG5qOXEyRXd5QVhiTjRzUWVQN1RwcmMtMU85WFpNRlE?oc=5
+## MAX Power Adds Aurora Project Permits Next to Lawson, Increases Permitted Land Position in Saskatchewan by More Than 50% to 2 Million Acres - Hydrogen Central
+- Google News - Saskatchewan | 2026-08-09T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMi-wFBVV95cUxQYTJhTEFYSWNGTzMwZWxtSE5GN3RJQXBFM3dMRExMMWpmRWxjNDNMSmZacTVTS2hJcWxmaVRfLVRNWDJlZXhnX29pLVp4M1lYRmRLbW9FOFFWajlUTGR6bHdvb0hLZVBLRFo3clZGY3hOQ05tS2ZMT3N0MDNyZEZob1FLMzNkalYwcUtDUmRiazIyWkpnUEdQMnlvenlXQzFtODZvMkVwc3M3RFFyeThjMkYxZDJWa1R1UlpDOTJLZVJPQ1NCN2lzS2kzUVZFRDJNT3hlSC1LMWo0NlA0eENjTGV5MFBSanotbFdwTXFQd2staWNFQmkxTW02SQ?oc=5
