@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-14T18:02:08.966606+00:00
+**PEGASUS alert:** 2026-10-15T04:46:11.166995+00:00
 
 New directly relevant items: 1
 
-## MAX Power Adds Aurora Project Permits Next to Lawson, Increases Permitted Land Position in Saskatchewan by More Than 50% to 2 Million Acres - Hydrogen Central
-- Google News - Saskatchewan | 2026-08-09T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMi-wFBVV95cUxQYTJhTEFYSWNGTzMwZWxtSE5GN3RJQXBFM3dMRExMMWpmRWxjNDNMSmZacTVTS2hJcWxmaVRfLVRNWDJlZXhnX29pLVp4M1lYRmRLbW9FOFFWajlUTGR6bHdvb0hLZVBLRFo3clZGY3hOQ05tS2ZMT3N0MDNyZEZob1FLMzNkalYwcUtDUmRiazIyWkpnUEdQMnlvenlXQzFtODZvMkVwc3M3RFFyeThjMkYxZDJWa1R1UlpDOTJLZVJPQ1NCN2lzS2kzUVZFRDJNT3hlSC1LMWo0NlA0eENjTGV5MFBSanotbFdwTXFQd2staWNFQmkxTW02SQ?oc=5
+## Max Power Mining Completes Third Well at Lawson Hydrogen Discovery in Saskatchewan - Yahoo Finance
+- Google News - Saskatchewan | 2026-09-15T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMikwFBVV95cUxNSUh0SzRGemRmQmpzdEt6R3NPaVlORXR5OU5VcE1mODZrSkdyNFBiWkFTM2xyS09lRXdjMHBqQ0lpc1BLQXZmZ253WDNRaHdTaS1GbWhoLXI1blZGZkpzamtJRHVudjJldExWMjN2RFBCZzZaZ1hOWUY4MG15dVZFMkhmUENLd28tUzRYS3U1TjhTNVU?oc=5
