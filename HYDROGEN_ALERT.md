@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-16T23:41:47.217434+00:00
+**PEGASUS alert:** 2026-10-17T14:13:41.983903+00:00
 
 New directly relevant items: 1
 
-## Max Power Mining’s Lawson 5 Well Targets Scale Potential of Current Natural Hydrogen Discovery Area and Broader Genesis Trend Extending >475 km to North Dakota - Junior Mining Network
-- Google News - Natural Hydrogen | 2026-09-21T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMi5AJBVV95cUxQMU5MTnZJeVZWdGROVUNqOEFocm0xRDZic3dORXVKaTZNcGZtQmRzdU1naDFBMTFGajhNaEROU3NVNExUT3I2YUpEWUk4eFh5VDhjOE53MWQ4OExaMTRKeVJOdW5wSENWWDVGOEl1SHYwQWVpTHc3V2FvLS1sYmItd2FSNjdmY3pnay1oaWJyaHFPcWh2VmpOMmRIc1hpUjZNLVVxTHVMaUxQNWNKTHdTTVVNa3NfYU1JNVpPYkZGT1o0eHZ6ZUZNMXNJTXRjTHVwSEZHZ09BTVVlZXYtNWNjQW85LWgwMTFtYXozNm1KS1pzTVd3T2tiVDlsb3Bwcy1MeFYtdFhjSGFQMjhrWXZTQlJEWmJhcWQyVlNTNWh4dzZwUlRZbDdsVktXQWtPUndHVDE3WkJtbDNKb3A5WklUMGJPSzFEWTBudXZLQlZNQmZXaFF2YWRiMkhyVnFUWnJkRF8yTw?oc=5
+## Max Power Confirms Basin-Scale Natural Hydrogen Potential in Saskatchewan with Bracken Well, 325 Km from Lawson Discovery - Yahoo Finance
+- Google News - Saskatchewan | 2026-06-30T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMikAFBVV95cUxNeXFCVm4yUWVGaVdNazg5Zm5DVVpISFF6d3ZsYldWcko0WmNqNFF0Ty1Yb2oyQ2NKU1B4eG9MS2hXVk1uRVNQazhSRERBX2taUHl0UkdaZmx0QU9ONC1lOXhFWTJZOTI0MTAtUjI4LXRZR2hwSzE5M2NSV1ZuNlpISG9uZjZBekhkRnV3MmttemI?oc=5
