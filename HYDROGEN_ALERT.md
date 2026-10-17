@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-17T14:13:41.983903+00:00
+**PEGASUS alert:** 2026-10-17T19:39:08.772003+00:00
 
 New directly relevant items: 1
 
-## Max Power Confirms Basin-Scale Natural Hydrogen Potential in Saskatchewan with Bracken Well, 325 Km from Lawson Discovery - Yahoo Finance
-- Google News - Saskatchewan | 2026-06-30T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMikAFBVV95cUxNeXFCVm4yUWVGaVdNazg5Zm5DVVpISFF6d3ZsYldWcko0WmNqNFF0Ty1Yb2oyQ2NKU1B4eG9MS2hXVk1uRVNQazhSRERBX2taUHl0UkdaZmx0QU9ONC1lOXhFWTJZOTI0MTAtUjI4LXRZR2hwSzE5M2NSV1ZuNlpISG9uZjZBekhkRnV3MmttemI?oc=5
+## MAX Power’s Saskatchewan hydrogen–helium trend: key project notes for engineers - Geomechanics.io
+- Google News - Saskatchewan | 2026-04-08T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMizgFBVV95cUxNOFZGOHptNGU5Qk5xNmFwWGs3ekcyanMtTDVpTFI0NTZWS1hUdTc1S0JMVUw5TlBVRVVGa2U0T0tUZm9CRmtIOS14TjR4eGl1WFk3Wml3bXpkUkMtcmxSLUg0M2J4VllWSVJ0WlJMaS1MZlhCTUpYTXZRYWsyTkZRa05NaVVSVWwxd0M3T3JVZ2xPM19nbzdPV0RIRUlzMFVfN2xwcUVyYWFhOTcwalFEQjdLZzJhZE1qd0M0MHpwelpDT0tWWmdaNzJieFJlZw?oc=5
