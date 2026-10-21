@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-21T11:56:09.876014+00:00
+**PEGASUS alert:** 2026-10-21T20:39:24.944259+00:00
 
 New directly relevant items: 1
 
-## Max Power Mining Establishes Saskatchewan Headquarters to Lead Canada’s Natural Hydrogen Breakthrough - Junior Mining Network
-- Google News - Saskatchewan | 2025-10-03T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMimAJBVV95cUxPaEw5cU1HMG1XcUVLTkp4X25mWnd4RlRZaGFPYjFpUFZQbWN3eDhkdlBOR295X1B0Y3JJOWlaanNpbktyeWh1Y0xYbkk2aHd6T3VYWl8wR2FnaGxDVERuSkJKcFFROWh0aWJqajVXWmJTU3otTlRsWTVWajYwVWdIakJFbGNQQ2pkbndMdF9CWHNqZXg0cGlWMWlPWnkwT3pseHVXV2c3TDJUSFZBRTVWQ0hlaU1JTW5adURLY1pacjk0d1hvVXc0QlM1LXJudzlwYURQSWNpeUpRS0NIRGtwY0J3R2xFN2ozajhLV3BUcngxYkduN21PNkd3TjJzdGs1SF8wMXpoSkVvcGExRjg3N3k1cWRIbzR0?oc=5
+## U of A launches new centre to fuel a hydrogen-powered future | Folio - University of Alberta
+- Google News - Fuel Cells | 2025-05-05T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMipwFBVV95cUxNd08wNXJldE1rV1ZPR3Y2YmRKLUhWUHVrTmhOaEUwSmQxQ09VQXhoSGpzRGtHMkJiYlRqYlJQX0ZPOTlndWpYZUlXc2dvRkx4SUdJQ3JnUmJUZERVZWJqRTFqMUNYUVZseDktZlZZMG9VUmpBRlh3U3U3a2lnMEVkaDcyalNLdUxFMzM2Y2hrVkZWQUdNajhEajZRclF0RFdkeXZteVYyRQ?oc=5
