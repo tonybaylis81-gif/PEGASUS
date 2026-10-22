@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-21T20:39:24.944259+00:00
+**PEGASUS alert:** 2026-10-22T07:28:00.271438+00:00
 
 New directly relevant items: 1
 
-## U of A launches new centre to fuel a hydrogen-powered future | Folio - University of Alberta
-- Google News - Fuel Cells | 2025-05-05T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMipwFBVV95cUxNd08wNXJldE1rV1ZPR3Y2YmRKLUhWUHVrTmhOaEUwSmQxQ09VQXhoSGpzRGtHMkJiYlRqYlJQX0ZPOTlndWpYZUlXc2dvRkx4SUdJQ3JnUmJUZERVZWJqRTFqMUNYUVZseDktZlZZMG9VUmpBRlh3U3U3a2lnMEVkaDcyalNLdUxFMzM2Y2hrVkZWQUdNajhEajZRclF0RFdkeXZteVYyRQ?oc=5
+## Bakken Energy's plans for North Dakota hydrogen hub fizzle - Billings Gazette
+- Google News - North Dakota | 2025-03-24T10:06:42+00:00
+- https://news.google.com/rss/articles/CBMirgFBVV95cUxOUVJucFpCbjVZN2QxclBlOUx1QmNad3BtQk5PQkxDZllFOHFPWXJxTktMQWRWaGlTVjhRRGxMOHMyRVlQUWd4M3QwMEo0c3R5NjFhZ2QtT2JqRjdQNktMTFVleWlFQmNUdmkyZkk1b1RoWlpKaUlFMGxCdkY2a0M0UEd3bkxQZ3k0RUE2Q0lsNzFjS3JIb0lQWGE0Nmd6LUF6WlBfREFXZjhDeHFUeUE?oc=5
