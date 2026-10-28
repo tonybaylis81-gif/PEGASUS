@@ -7,6 +7,7 @@ import streamlit as st
 from pegasus.core import Pegasus
 from pegasus.portable import initialize_portable_root
 from pegasus.vault_keeper import VaultKeeper
+from pegasus.workflow import WorkflowLedger, STATUSES
 from hydrogen_intel import scan_hydrogen, build_report
 from vast_cash_monitor import run_vast_cash_sentinel, VAST_CASH_URL, VAST_CASH_REPO
 
@@ -24,6 +25,7 @@ else:
     ledger_path = os.path.join("data", "LEDGER")
 
 vault_keeper = VaultKeeper(vault_path, ledger_path)
+workflow_ledger = WorkflowLedger(ledger_path)
 
 # Hydrogen intelligence is scanned on demand from the web.
 # The always-on background watcher is handled by GitHub Actions.
@@ -76,7 +78,7 @@ col5.metric("Vault Files", len(vault_keeper.register()))
 
 st.caption(f"Portable home: {os.environ.get('PEGASUS_HOME', 'local project data')}")
 
-tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "VAULT KEEPER", "Records", "Documents", "Tasks", "Sentinels"])
+tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "VAULT KEEPER", "Records", "Documents", "Tasks", "Sentinels", "Workflows"])
 
 with tabs[0]:
     st.subheader("Command Console")
@@ -267,3 +269,87 @@ with tabs[5]:
     **HUMAN AUTHORITY** → required approval for consequential release and physical testing
     """)
     st.dataframe(pegasus.list_items("sentinels"), use_container_width=True, hide_index=True)
+
+
+with tabs[7]:
+    st.subheader("Goal-to-Completion Workflows")
+    st.caption(
+        "Record a goal, break it into ordered steps, track progress, and keep an audit trail. "
+        "Creating a workflow records a plan only; it does not execute external actions."
+    )
+
+    with st.form("workflow_create_form", clear_on_submit=True):
+        workflow_goal = st.text_input("Goal / desired outcome", placeholder="Example: Prepare the next hydrogen commercialization research brief")
+        workflow_steps_text = st.text_area(
+            "Steps (one per line, in order)",
+            placeholder="Collect current sources\nCompare technical claims\nDraft findings\nReview sources and uncertainties",
+            height=150,
+        )
+        workflow_owner = st.selectbox("Workflow lead", ["Pegasus", "Sentinel Lieutenant", "Human"])
+        workflow_submit = st.form_submit_button("Create Workflow Plan", type="primary)
+
+    if workflow_submit:
+        steps = workflow_steps_text.splitlines()
+        try:
+            created = workflow_ledger.create(workflow_goal, steps, workflow_owner)
+            st.success(f"Workflow plan created: {created['id']}")
+            st.info("Plan recorded only. No external actions were executed.")
+        except ValueError as exc:
+            st.error(str(exc))
+
+    workflows = workflow_ledger.list_workflows()
+    st.markdown("### Workflow Register")
+    if workflows:
+        summary = [
+            {
+                "ID": item["id"],
+                "Goal": item["goal"],
+                "Lead": item["owner"],
+                "Status": item["status"],
+                "Steps": len(item["steps"]),
+                "Completed": sum(1 for step in item["steps"] if step["status"] == "COMPLETE"),
+                "Updated": item["updated_at"],
+            }
+            for item in workflows
+        ]
+        st.dataframe(summary, use_container_width=True, hide_index=True)
+
+        workflow_options = {f"{item['id']} | {item['goal']}": item for item in workflows}
+        selected_label = st.selectbox("Select workflow to inspect", list(workflow_options.keys()))
+        selected_workflow = workflow_options[selected_label]
+        st.markdown(f"#### {selected_workflow['id']}: {selected_workflow['goal']}")
+        st.caption(selected_workflow.get("execution_note", ""))
+        st.dataframe(selected_workflow["steps"], use_container_width=True, hide_index=True)
+
+        step_options = {
+            f"{step['id']} | {step['description']} [{step['status']}]": step
+            for step in selected_workflow["steps"]
+        }
+        with st.form("workflow_step_update_form"):
+            selected_step_label = st.selectbox("Step to update", list(step_options.keys()))
+            selected_status = st.selectbox("New status", list(STATUSES))
+            update_note = st.text_input("Update note (optional)")
+            step_submit = st.form_submit_button("Record Step Update")
+        if step_submit:
+            chosen_step = step_options[selected_step_label]
+            try:
+                workflow_ledger.update_step(
+                    selected_workflow["id"], chosen_step["id"], selected_status, update_note
+                )
+                st.success("Step status and audit trail updated.")
+                st.rerun()
+            except (ValueError, KeyError) as exc:
+                st.error(str(exc))
+
+        with st.expander("Workflow audit trail"):
+            audit_path = Path(ledger_path) / "workflow_audit.json"
+            if audit_path.exists():
+                import json
+                audit_entries = json.loads(audit_path.read_text(encoding="utf-8"))
+                matching = [
+                    event for event in reversed(audit_entries)
+                    if event.get("details", {}).get("workflow_id") == selected_workflow["id"]
+                ]
+                st.dataframe(matching, use_container_width=True, hide_index=True)
+    else:
+        st.info("No workflow plans yet. Create one above to begin.")
