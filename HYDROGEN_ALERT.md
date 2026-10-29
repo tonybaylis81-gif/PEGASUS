@@ -1,9 +1,13 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-28T15:12:37.020751+00:00
+**PEGASUS alert:** 2026-10-29T06:19:39.865510+00:00
 
-New directly relevant items: 1
+New directly relevant items: 2
 
-## MAX Power Reports Natural Hydrogen Indicators at Saskatchewan's Lawson 5 - www.tokenpost.com
-- Google News - Natural Hydrogen | 2026-10-28T01:36:00+00:00
-- https://news.google.com/rss/articles/CBMiWEFVX3lxTFBWRnpVZTBxTVlSRW8tVEFfU1N3SkV5Qy1iYnhmN0lQblJyWTZKWXZfWmpaWnVaX2VKX01GM1Qzam0wQ2RDc0l2RktVMjhxbU5HVDhqVTM5TjQ?oc=5
+## Dickinson Renewable Diesel Facility, North Dakota, USA - NS Energy
+- Google News - North Dakota | 2021-08-12T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMihAFBVV95cUxQWEtZTnNrdVZsTW56YU1UYWtsd3NMV0ZMSFN2X0Zld3VQVDBFbmtxWnBucWluRlhZVWhnWl9SMWpIRkNFeXhtZm0wQk5rakZiR1FXTEFsSXJjNXFqSnZNS1Z3cGNNSEoyYjc2Um1zam93dGNTOERHbVdtSk5BUTNoNkR5UFk?oc=5
+
+## Burgum discusses carbon-related opportunities, drought with agricultural groups in Fargo - North Dakota Office of the Governor (.gov)
+- Google News - North Dakota | 2021-06-14T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMisgFBVV95cUxPclVOMGlnbFlLQmxleFBIMWRGZ1NPeGVrbk1QZ20xRWR0cHRTeWZ3LUVhSmpIV2U3RzNtaE15MW1YZnhvZnQxTmhQQldUMENoN20tOUVCYW10Nm10VHJTcXBNbUpFbE5NYTA2VE5sRl9qdHBZSzFnQm5TWmxXamlMaXR4SGdYZHZodlZSMkxzS0ZValZYb0hROUJQaVBxMUdMMTcwZVNsOHJNUEhaRE9mVWNR?oc=5
