@@ -24,6 +24,7 @@ else:
     vault_path = os.path.join("data", "VAULT", "VALHALLA ENGINEERING VAULT")
     ledger_path = os.path.join("data", "LEDGER")
 
+Path(vault_path).mkdir(parents=True, exist_ok=True)
 vault_keeper = VaultKeeper(vault_path, ledger_path)
 workflow_ledger = WorkflowLedger(ledger_path)
 
@@ -78,7 +79,7 @@ col5.metric("Vault Files", len(vault_keeper.register()))
 
 st.caption(f"Portable home: {os.environ.get('PEGASUS_HOME', 'local project data')}")
 
-tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "VAULT KEEPER", "Records", "Documents", "Tasks", "Sentinels", "Workflows"])
+tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "Records", "Documents", "Tasks", "Sentinels", "VAULT KEEPER", "Workflows"])
 
 with tabs[0]:
     st.subheader("Command Console")
@@ -271,6 +272,54 @@ with tabs[5]:
     st.dataframe(pegasus.list_items("sentinels"), use_container_width=True, hide_index=True)
 
 
+with tabs[6]:
+    st.subheader("VALHALLA ENGINEERING VAULT")
+    st.caption("Inventory, verify, search and reconcile the Vault. PEGASUS does not move, rename or delete Vault files without human authorization.")
+
+    action_col, reconcile_col = st.columns(2)
+    if action_col.button("SCAN / REFRESH VAULT INVENTORY", type="primary", use_container_width=True):
+        with st.spinner("PEGASUS is hashing and registering Vault files..."):
+            inventory = vault_keeper.inventory()
+        st.success(f"Vault inventory refreshed: {len(inventory)} files registered.")
+        st.rerun()
+
+    if reconcile_col.button("RUN VAULT RECONCILIATION", use_container_width=True):
+        with st.spinner("Checking duplicates, filing sections and numbering candidates..."):
+            report = vault_keeper.reconcile()
+        st.session_state["vault_reconciliation"] = report
+
+    if "vault_reconciliation" in st.session_state:
+        st.markdown("### Reconciliation report")
+        st.json(st.session_state["vault_reconciliation"])
+
+    st.markdown("### Search registered files")
+    search_term = st.text_input("Filename or folder term", key="vault_search_term")
+    if search_term.strip():
+        matches = vault_keeper.search(search_term)
+        st.dataframe(matches, use_container_width=True, hide_index=True)
+        if not matches:
+            st.info("No matching files in the current register.")
+
+    st.markdown("### Import a Vault backup")
+    st.caption("Upload a ZIP archive to extract its contents into the Vault. Existing files with the same names may be replaced. Keep a separate backup before importing.")
+    uploaded_vault = st.file_uploader("Vault ZIP archive", type=["zip"], key="vault_zip_upload")
+    if st.button("IMPORT VAULT ZIP", disabled=uploaded_vault is None):
+        try:
+            imported_count = ingest_vault_zip(uploaded_vault)
+            st.success(f"Vault import complete. {imported_count} files are now present.")
+            refreshed = vault_keeper.inventory()
+            st.info(f"Inventory refreshed: {len(refreshed)} files registered.")
+            st.rerun()
+        except Exception as exc:
+            st.error(f"Vault import failed: {exc}")
+
+    st.markdown("### Registered Vault files")
+    registered_files = vault_keeper.register()
+    if registered_files:
+        st.dataframe(registered_files, use_container_width=True, hide_index=True)
+    else:
+        st.info("No files have been registered yet. Run SCAN / REFRESH VAULT INVENTORY after connecting or importing the Vault.")
+
 with tabs[7]:
     st.subheader("Goal-to-Completion Workflows")
     st.caption(
@@ -286,7 +335,7 @@ with tabs[7]:
             height=150,
         )
         workflow_owner = st.selectbox("Workflow lead", ["Pegasus", "Sentinel Lieutenant", "Human"])
-        workflow_submit = st.form_submit_button("Create Workflow Plan", type="primary)
+        workflow_submit = st.form_submit_button("Create Workflow Plan", type="primary")
 
     if workflow_submit:
         steps = workflow_steps_text.splitlines()
