@@ -43,12 +43,44 @@ if "hydrogen_scan" not in st.session_state:
 if "vast_cash_sentinel" not in st.session_state:
     st.session_state.vast_cash_sentinel = None
 
+def _zip_member_sha256(zf, member):
+    digest = hashlib.sha256()
+    with zf.open(member) as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _file_sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _available_import_path(destination, reserved):
+    """Choose a clearly labelled, unused name without replacing an existing file."""
+    number = 2
+    while True:
+        candidate = destination.with_name(
+            f"{destination.stem}__PEGASUS_IMPORT_{number}{destination.suffix}"
+        )
+        if not candidate.exists() and candidate not in reserved:
+            return candidate
+        number += 1
+
+
 def ingest_vault_zip(uploaded_zip):
-    """Safely import a Vault ZIP without overwriting files already in PEGASUS."""
+    """Import safely; skip identical files and preserve differing name collisions."""
     target = Path(vault_path).resolve()
     target.mkdir(parents=True, exist_ok=True)
     if uploaded_zip.size > 500 * 1024 * 1024:
         raise ValueError("The ZIP file exceeds the 500 MB upload limit.")
+
+    imported = 0
+    skipped_identical = 0
+    renamed_collisions = 0
 
     with tempfile.TemporaryDirectory() as tmp:
         zip_path = Path(tmp) / "vault.zip"
@@ -62,17 +94,23 @@ def ingest_vault_zip(uploaded_zip):
                 raise ValueError("Vault package exceeds the 500 MB safety limit.")
 
             file_members = [m for m in members if not m.is_dir()]
-            first_parts = [m.filename.replace("\\", "/").strip("/").split("/")[0] for m in file_members]
+            first_parts = [
+                m.filename.replace("\\\\", "/").strip("/").split("/")[0]
+                for m in file_members
+            ]
             strip_root = bool(first_parts) and all(
                 part.casefold() == "valhalla engineering vault".casefold()
                 for part in first_parts
             )
 
             planned = []
+            reserved = set()
             for member in members:
                 name = member.filename.replace("\\\\", "/").strip("/")
                 parts = Path(name).parts
-                if not name or name.startswith("/") or any(part in ("", ".", "..") for part in parts):
+                if not name or name.startswith("/") or any(
+                    part in ("", ".", "..") for part in parts
+                ):
                     if name:
                         raise ValueError(f"Unsafe path in Vault package: {member.filename}")
                     continue
@@ -80,32 +118,50 @@ def ingest_vault_zip(uploaded_zip):
                     if len(parts) == 1:
                         continue
                     name = str(Path(*parts[1:]))
+
                 destination = (target / name).resolve()
                 if destination != target and target not in destination.parents:
                     raise ValueError(f"Unsafe destination in Vault package: {member.filename}")
                 unix_mode = (member.external_attr >> 16) & 0o170000
                 if unix_mode == 0o120000:
                     raise ValueError(f"Symbolic links are not allowed: {member.filename}")
-                if not member.is_dir():
-                    if destination.exists():
-                        raise ValueError(
-                            f"Import stopped to protect an existing file: {name}. "
-                            "Nothing was overwritten."
-                        )
-                    planned.append((member, destination))
-                else:
-                    planned.append((member, destination))
 
-            # All paths are checked before any file is written.
-            for member, destination in planned:
                 if member.is_dir():
+                    planned.append(("directory", member, destination))
+                    continue
+
+                incoming_hash = _zip_member_sha256(zf, member)
+                if destination.exists():
+                    if not destination.is_file():
+                        raise ValueError(f"A folder already occupies this file path: {name}")
+                    if _file_sha256(destination) == incoming_hash:
+                        skipped_identical += 1
+                        continue
+                    destination = _available_import_path(destination, reserved)
+                    renamed_collisions += 1
+                elif destination in reserved:
+                    destination = _available_import_path(destination, reserved)
+                    renamed_collisions += 1
+
+                reserved.add(destination)
+                planned.append(("file", member, destination))
+
+            # All archive paths and collisions are checked before any file is written.
+            for kind, member, destination in planned:
+                if kind == "directory":
                     destination.mkdir(parents=True, exist_ok=True)
                 else:
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     with zf.open(member) as source, destination.open("xb") as output:
                         shutil.copyfileobj(source, output)
+                    imported += 1
 
-    return sum(1 for p in target.rglob("*") if p.is_file())
+    return {
+        "imported": imported,
+        "skipped_identical": skipped_identical,
+        "renamed_collisions": renamed_collisions,
+        "total_files": sum(1 for p in target.rglob("*") if p.is_file()),
+    }
 
 st.title("🪽 PEGASUS")
 st.caption("Valhalla Engineering Administrative & Command System")
