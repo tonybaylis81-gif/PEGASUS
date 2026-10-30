@@ -1,0 +1,57 @@
+name: PEGASUS Build Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PEGASUS
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install application dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Compile all Python modules
+        run: python -m compileall -q app.py hydrogen_intel.py hydrogen_watch.py vast_cash_monitor.py vast_cash_watch.py pegasus scripts
+      - name: Smoke-test the administrative core
+        run: |
+          python - <<'PY'
+          import tempfile
+          from pathlib import Path
+          from pegasus import Pegasus
+          from pegasus.vault_keeper import VaultKeeper
+          from pegasus.workflow import WorkflowLedger
+
+          with tempfile.TemporaryDirectory() as temp:
+              root = Path(temp)
+              core = Pegasus(str(root / "LEDGER"))
+              assert core.create_record("Smoke test", "Administrative")["status"] == "ACTIVE"
+              assert core.register_document("Test document", "Report", "Draft")["version"] == "1.0"
+              assert core.create_task("Verify task ledger", "Pegasus")["status"] == "QUEUED"
+
+              vault = VaultKeeper(root / "VAULT", root / "LEDGER")
+              (root / "VAULT" / "00 CORPORATE").mkdir(parents=True)
+              (root / "VAULT" / "00 CORPORATE" / "test.txt").write_text("PEGASUS")
+              assert len(vault.inventory()) == 1
+              assert vault.reconcile()["scanned_files"] == 1
+
+              workflows = WorkflowLedger(root / "LEDGER")
+              plan = workflows.create("Smoke test workflow", ["Compile", "Inspect"])
+              workflows.update_step(plan["id"], "STEP-001", "COMPLETE", "Passed")
+              assert workflows.list_workflows()[0]["steps"][0]["status"] == "COMPLETE"
+
+          print("PEGASUS core, Vault Keeper and workflow smoke tests passed.")
+          PY
