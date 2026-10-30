@@ -1,4 +1,5 @@
 import os
+import shutil
 import tempfile
 import zipfile
 from pathlib import Path
@@ -61,7 +62,7 @@ def ingest_vault_zip(uploaded_zip):
                 raise ValueError("Vault package exceeds the 500 MB safety limit.")
 
             file_members = [m for m in members if not m.is_dir()]
-            first_parts = [m.filename.replace("\\\\", "/").strip("/").split("/")[0] for m in file_members]
+            first_parts = [m.filename.replace("\\", "/").strip("/").split("/")[0] for m in file_members]
             strip_root = bool(first_parts) and all(
                 part.casefold() == "valhalla engineering vault".casefold()
                 for part in first_parts
@@ -102,7 +103,7 @@ def ingest_vault_zip(uploaded_zip):
                 else:
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     with zf.open(member) as source, destination.open("xb") as output:
-                        output.write(source.read())
+                        shutil.copyfileobj(source, output)
 
     return sum(1 for p in target.rglob("*") if p.is_file())
 
