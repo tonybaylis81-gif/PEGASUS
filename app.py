@@ -96,7 +96,7 @@ def ingest_vault_zip(uploaded_zip):
 
             file_members = [m for m in members if not m.is_dir()]
             first_parts = [
-                m.filename.replace("\\\\", "/").strip("/").split("/")[0]
+                m.filename.replace("\\", "/").strip("/").split("/")[0]
                 for m in file_members
             ]
             strip_root = bool(first_parts) and all(
@@ -107,7 +107,7 @@ def ingest_vault_zip(uploaded_zip):
             planned = []
             reserved = set()
             for member in members:
-                name = member.filename.replace("\\\\", "/").strip("/")
+                name = member.filename.replace("\\", "/").strip("/")
                 parts = Path(name).parts
                 if not name or name.startswith("/") or any(
                     part in ("", ".", "..") for part in parts
