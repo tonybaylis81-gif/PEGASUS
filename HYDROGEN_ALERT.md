@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-10-29T23:31:11.194653+00:00
+**PEGASUS alert:** 2026-10-30T09:54:17.140793+00:00
 
 New directly relevant items: 1
 
-## Researchers, industry teaming up to help hydrogen fuel cells take flight - The University of British Columbia
-- Google News - Hydrogen | 2026-10-29T20:30:38+00:00
-- https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQTVfY0VsamVieEFMN29ZVV9CX2VLNkN4Nmkya1ZLLXk3NDNpU1QxZmZacVpNYk1abGpXbFJsOVh2M3V3R1padWRweUhrVlBlbHd2dzFXTVlqRXFRN0pRbjZQYW8ySWtTakpaYVBoZklDSTZYRmNlQ2l0M3NNYnBIR2ZqTXRYS0wyLXYzb0Q3cmFiaFd1SnlyOHFETXFSQW1panh1b3VUY1kzZw?oc=5
+## Saskatchewan to advance Natural Hydrogen program - WestCentralOnline
+- Google News - Saskatchewan | 2025-10-05T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMikAFBVV95cUxONURnMUZmNDhzel9rQlIyb25aS1NYSUhXaGNhb1Z5WENMdGd3ZHRMQWsyakRIVjBMXzZVUEhRTmlwUzZtY1Q3dkFKY3EwRkNvRUw5RlNYN2UtTXg2d3A1dVVNYmF1TEJablcyM1U2djBFQmF3Q0pMZlFDbjA3T0lNWUN2UE9FRHlZSzlsOWNBODQ?oc=5
