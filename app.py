@@ -43,9 +43,12 @@ if "vast_cash_sentinel" not in st.session_state:
     st.session_state.vast_cash_sentinel = None
 
 def ingest_vault_zip(uploaded_zip):
-    """Safely unpack a user-supplied Vault ZIP into PEGASUS working storage."""
+    """Safely import a Vault ZIP without overwriting files already in PEGASUS."""
     target = Path(vault_path).resolve()
     target.mkdir(parents=True, exist_ok=True)
+    if uploaded_zip.size > 500 * 1024 * 1024:
+        raise ValueError("The ZIP file exceeds the 500 MB upload limit.")
+
     with tempfile.TemporaryDirectory() as tmp:
         zip_path = Path(tmp) / "vault.zip"
         zip_path.write_bytes(uploaded_zip.getbuffer())
@@ -56,19 +59,79 @@ def ingest_vault_zip(uploaded_zip):
             total_uncompressed = sum(max(0, m.file_size) for m in members)
             if total_uncompressed > 500 * 1024 * 1024:
                 raise ValueError("Vault package exceeds the 500 MB safety limit.")
+
+            file_members = [m for m in members if not m.is_dir()]
+            first_parts = [m.filename.replace("\\\\", "/").strip("/").split("/")[0] for m in file_members]
+            strip_root = bool(first_parts) and all(
+                part.casefold() == "valhalla engineering vault".casefold()
+                for part in first_parts
+            )
+
+            planned = []
             for member in members:
-                name = member.filename.replace("\\\\", "/")
-                if name.startswith("/") or any(part == ".." for part in Path(name).parts):
-                    raise ValueError(f"Unsafe path in Vault package: {member.filename}")
+                name = member.filename.replace("\\\\", "/").strip("/")
+                parts = Path(name).parts
+                if not name or name.startswith("/") or any(part in ("", ".", "..") for part in parts):
+                    if name:
+                        raise ValueError(f"Unsafe path in Vault package: {member.filename}")
+                    continue
+                if strip_root:
+                    if len(parts) == 1:
+                        continue
+                    name = str(Path(*parts[1:]))
                 destination = (target / name).resolve()
                 if destination != target and target not in destination.parents:
                     raise ValueError(f"Unsafe destination in Vault package: {member.filename}")
-            zf.extractall(target)
+                unix_mode = (member.external_attr >> 16) & 0o170000
+                if unix_mode == 0o120000:
+                    raise ValueError(f"Symbolic links are not allowed: {member.filename}")
+                if not member.is_dir():
+                    if destination.exists():
+                        raise ValueError(
+                            f"Import stopped to protect an existing file: {name}. "
+                            "Nothing was overwritten."
+                        )
+                    planned.append((member, destination))
+                else:
+                    planned.append((member, destination))
+
+            # All paths are checked before any file is written.
+            for member, destination in planned:
+                if member.is_dir():
+                    destination.mkdir(parents=True, exist_ok=True)
+                else:
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    with zf.open(member) as source, destination.open("xb") as output:
+                        output.write(source.read())
+
     return sum(1 for p in target.rglob("*") if p.is_file())
 
 st.title("🪽 PEGASUS")
 st.caption("Valhalla Engineering Administrative & Command System")
 st.divider()
+
+st.markdown("## UPLOAD YOUR VALHALLA ENGINEERING VAULT")
+st.caption("Choose the ZIP downloaded from Google Drive, or drag and drop it into the area below. Your Google Drive original is not changed.")
+vault_upload = st.file_uploader(
+    "Drop your Vault ZIP here, or browse files",
+    type=["zip"],
+    key="main_vault_zip_upload",
+)
+if st.button(
+    "⬆️  IMPORT VAULT INTO PEGASUS",
+    type="primary",
+    use_container_width=True,
+    disabled=vault_upload is None,
+    key="main_import_vault",
+):
+    try:
+        with st.spinner("PEGASUS is safely importing your Vault..."):
+            imported_count = ingest_vault_zip(vault_upload)
+            refreshed = vault_keeper.inventory()
+        st.success(f"Vault import complete. {imported_count} files are now in PEGASUS. {len(refreshed)} files registered.")
+        st.rerun()
+    except Exception as exc:
+        st.error(f"Vault import stopped: {exc}")
 
 col1, col2, col3, col4, col5 = st.columns(5)
 col1.metric("Records", pegasus.count("records"))
@@ -299,19 +362,6 @@ with tabs[6]:
         st.dataframe(matches, use_container_width=True, hide_index=True)
         if not matches:
             st.info("No matching files in the current register.")
-
-    st.markdown("### Import a Vault backup")
-    st.caption("Upload a ZIP archive to extract its contents into the Vault. Existing files with the same names may be replaced. Keep a separate backup before importing.")
-    uploaded_vault = st.file_uploader("Vault ZIP archive", type=["zip"], key="vault_zip_upload")
-    if st.button("IMPORT VAULT ZIP", disabled=uploaded_vault is None):
-        try:
-            imported_count = ingest_vault_zip(uploaded_vault)
-            st.success(f"Vault import complete. {imported_count} files are now present.")
-            refreshed = vault_keeper.inventory()
-            st.info(f"Inventory refreshed: {len(refreshed)} files registered.")
-            st.rerun()
-        except Exception as exc:
-            st.error(f"Vault import failed: {exc}")
 
     st.markdown("### Registered Vault files")
     registered_files = vault_keeper.register()
