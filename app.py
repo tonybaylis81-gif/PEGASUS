@@ -1,4 +1,5 @@
 import os
+import hashlib
 import shutil
 import tempfile
 import zipfile
@@ -183,9 +184,14 @@ if st.button(
 ):
     try:
         with st.spinner("PEGASUS is safely importing your Vault..."):
-            imported_count = ingest_vault_zip(vault_upload)
+            result = ingest_vault_zip(vault_upload)
             refreshed = vault_keeper.inventory()
-        st.success(f"Vault import complete. {imported_count} files are now in PEGASUS. {len(refreshed)} files registered.")
+        st.success(
+            f"Vault import complete. {result['imported']} new files imported; "
+            f"{result['skipped_identical']} identical files skipped; "
+            f"{result['renamed_collisions']} differing name collisions preserved "
+            f"with __PEGASUS_IMPORT labels. {len(refreshed)} files registered."
+        )
         st.rerun()
     except Exception as exc:
         st.error(f"Vault import stopped: {exc}")
