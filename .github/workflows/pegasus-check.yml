@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pytest
       - name: Run automated test suite
-        run: pytest -q
+        run: PYTHONPATH=. pytest -q
       - name: Compile all Python modules
         run: python -m compileall -q app.py hydrogen_intel.py hydrogen_watch.py vast_cash_monitor.py vast_cash_watch.py pegasus scripts
       - name: Smoke-test the administrative core
