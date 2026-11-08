@@ -401,15 +401,62 @@ with tabs[3]:
             st.success(f"Document registered: {item['id']}")
 
 with tabs[4]:
-    st.subheader("Task Ledger")
-    st.dataframe(pegasus.list_items("tasks"), use_container_width=True, hide_index=True)
+    st.subheader("Task Ledger & Approval Queue")
+    st.caption("PEGASUS records assignments and tracks verified progress. This deployment does not yet have autonomous Minion workers; task status updates are administrative tracking, not proof of automated execution.")
     with st.form("task_form"):
         description = st.text_input("Task")
-        assignee = st.selectbox("Authority", ["Pegasus", "Sentinel Lieutenant", "Minion", "Human"])
+        assignee = st.selectbox("Assign to", ["Pegasus", "Sentinel Lieutenant", "Minion", "Human"])
         submitted = st.form_submit_button("Create Task")
         if submitted and description.strip():
             item = pegasus.create_task(description.strip(), assignee)
-            st.success(f"Task created: {item['id']}")
+            st.success(f"Task created: {item['id']} | Status: {item['status']}")
+            st.rerun()
+
+    task_items = pegasus.list_items("tasks")
+    if task_items:
+        st.dataframe(task_items, use_container_width=True, hide_index=True)
+        task_ids = [item["id"] for item in task_items]
+        selected_task_id = st.selectbox("Select task to administer", task_ids)
+        selected_task = next(item for item in task_items if item["id"] == selected_task_id)
+        st.write({
+            "Task": selected_task["description"],
+            "Assigned to": selected_task["assignee"],
+            "Status": selected_task["status"],
+            "Authorization": selected_task.get("authorization_status", "LEGACY / NOT SET"),
+            "Execution mode": selected_task.get("execution_mode", "LEGACY TASK"),
+        })
+        if selected_task.get("human_authorization_required") and selected_task.get("authorization_status") != "APPROVED":
+            with st.form("task_authorization_form"):
+                st.warning("This delegated task is held until human authority approves it.")
+                confirm_authority = st.checkbox("I authorize this task to enter the work queue.")
+                authorize = st.form_submit_button("AUTHORIZE TASK")
+                if authorize:
+                    if confirm_authority:
+                        pegasus.authorize_task(selected_task_id, "Founder / Human Authority")
+                        st.success("Task authorized and placed in the queue.")
+                        st.rerun()
+                    else:
+                        st.error("Authorization checkbox is required.")
+        else:
+            with st.form("task_update_form"):
+                new_status = st.selectbox(
+                    "Update task status",
+                    ["QUEUED", "IN_PROGRESS", "BLOCKED_APPROVAL", "COMPLETE", "FAILED", "CANCELLED"],
+                    index=["QUEUED", "IN_PROGRESS", "BLOCKED_APPROVAL", "COMPLETE", "FAILED", "CANCELLED"].index(
+                        selected_task["status"] if selected_task["status"] in ["QUEUED", "IN_PROGRESS", "BLOCKED_APPROVAL", "COMPLETE", "FAILED", "CANCELLED"] else "QUEUED"
+                    ),
+                )
+                result_note = st.text_area("Work result / verification note")
+                update = st.form_submit_button("UPDATE TASK RECORD")
+                if update:
+                    try:
+                        pegasus.update_task(selected_task_id, new_status, result_note)
+                        st.success("Task record updated and audit event written.")
+                        st.rerun()
+                    except Exception as exc:
+                        st.error(f"Task update rejected: {exc}")
+    else:
+        st.info("No tasks have been entered yet.")
 
 with tabs[5]:
     st.subheader("Chain of Command")
