@@ -15,18 +15,34 @@ from vast_cash_monitor import run_vast_cash_sentinel, VAST_CASH_URL, VAST_CASH_R
 
 st.set_page_config(page_title="PEGASUS", page_icon="🪽", layout="wide")
 
-home = os.environ.get("PEGASUS_HOME")
+def _setting(name, default=""):
+    """Read deployment settings from environment first, then Streamlit Secrets."""
+    value = os.environ.get(name)
+    if value:
+        return value
+    try:
+        value = st.secrets.get(name, default)
+    except Exception:
+        value = default
+    return value or default
+
+
+home = _setting("PEGASUS_HOME")
 if home:
     initialize_portable_root(home)
-    pegasus = Pegasus()
-    vault_path = os.path.join(home, "VAULT", "VALHALLA ENGINEERING VAULT")
+    vault_default = os.path.join(home, "VAULT", "VALHALLA ENGINEERING VAULT")
     ledger_path = os.path.join(home, "LEDGER")
 else:
-    pegasus = Pegasus()
-    vault_path = os.path.join("data", "VAULT", "VALHALLA ENGINEERING VAULT")
+    vault_default = os.path.join("data", "VAULT", "VALHALLA ENGINEERING VAULT")
     ledger_path = os.path.join("data", "LEDGER")
 
-Path(vault_path).mkdir(parents=True, exist_ok=True)
+# VALHALLA_VAULT_PATH is the explicit mounted Vault location.
+# Never create this directory at startup: an empty app folder is not a Vault connection.
+vault_path = _setting("VALHALLA_VAULT_PATH", vault_default)
+vault_connected = Path(vault_path).expanduser().is_dir()
+
+# Keep every Pegasus ledger in the same configured ledger directory.
+pegasus = Pegasus(ledger_path)
 vault_keeper = VaultKeeper(vault_path, ledger_path)
 workflow_ledger = WorkflowLedger(ledger_path)
 
@@ -169,7 +185,7 @@ st.caption("Valhalla Engineering Administrative & Command System")
 st.divider()
 
 st.markdown("## UPLOAD YOUR VALHALLA ENGINEERING VAULT")
-st.caption("Choose the ZIP downloaded from Google Drive, or drag and drop it into the area below. Your Google Drive original is not changed.")
+st.caption("Choose the ZIP downloaded from Google Drive, or drag and drop it below. The Google Drive original is not changed. On Community Cloud, an imported copy in local app storage may disappear after a restart or redeploy.")
 vault_upload = st.file_uploader(
     "Drop your Vault ZIP here, or browse files",
     type=["zip"],
@@ -201,9 +217,17 @@ col1.metric("Records", pegasus.count("records"))
 col2.metric("Documents", pegasus.count("documents"))
 col3.metric("Tasks", pegasus.count("tasks"))
 col4.metric("Sentinels", pegasus.count("sentinels"))
-col5.metric("Vault Files", len(vault_keeper.register()))
+col5.metric("Vault Files", len(vault_keeper.register()) if vault_connected else "NOT CONNECTED")
 
-st.caption(f"Portable home: {os.environ.get('PEGASUS_HOME', 'local project data')}")
+st.caption(f"Pegasus data directory: {ledger_path}")
+if vault_connected:
+    st.success(f"VALHALLA ENGINEERING VAULT CONNECTED: {Path(vault_path).expanduser().resolve()}")
+else:
+    st.warning(
+        "VALHALLA ENGINEERING VAULT NOT CONNECTED. Pegasus is showing its own workspace, "
+        "not your source Vault. Set VALHALLA_VAULT_PATH to a mounted Vault folder or import "
+        "a Vault ZIP deliberately. Streamlit Community Cloud local files are not durable storage."
+    )
 
 tabs = st.tabs(["Command", "HYDROGEN INTELLIGENCE", "Records", "Documents", "Tasks", "Sentinels", "VAULT KEEPER", "Workflows"])
 
@@ -400,16 +424,21 @@ with tabs[5]:
 
 with tabs[6]:
     st.subheader("VALHALLA ENGINEERING VAULT")
-    st.caption("Inventory, verify, search and reconcile the Vault. PEGASUS does not move, rename or delete Vault files without human authorization.")
+    st.caption("Inventory, verify, search and reconcile the existing Vault. PEGASUS does not move, rename or delete Vault files without human authorization.")
+    if not vault_connected:
+        st.error("Vault connection is not established. Inventory and reconciliation are disabled until the actual Vault folder is mounted or imported.")
+        st.code('VALHALLA_VAULT_PATH = "/path/to/VALHALLA ENGINEERING VAULT"')
+    else:
+        st.caption(f"Connected Vault path: {Path(vault_path).expanduser().resolve()}")
 
     action_col, reconcile_col = st.columns(2)
-    if action_col.button("SCAN / REFRESH VAULT INVENTORY", type="primary", use_container_width=True):
+    if action_col.button("SCAN / REFRESH VAULT INVENTORY", type="primary", use_container_width=True, disabled=not vault_connected):
         with st.spinner("PEGASUS is hashing and registering Vault files..."):
             inventory = vault_keeper.inventory()
         st.success(f"Vault inventory refreshed: {len(inventory)} files registered.")
         st.rerun()
 
-    if reconcile_col.button("RUN VAULT RECONCILIATION", use_container_width=True):
+    if reconcile_col.button("RUN VAULT RECONCILIATION", use_container_width=True, disabled=not vault_connected):
         with st.spinner("Checking duplicates, filing sections and numbering candidates..."):
             report = vault_keeper.reconcile()
         st.session_state["vault_reconciliation"] = report
