@@ -130,14 +130,74 @@ class Pegasus:
         })
 
     def create_task(self, description: str, assignee: str) -> dict:
-        return self._append("tasks", {
+        requires_approval = assignee != "Pegasus"
+        item = {
             "id": self._id("TSK"),
-            "description": description,
+            "description": description.strip(),
             "assignee": assignee,
-            "status": "QUEUED",
-            "human_authorization_required": assignee != "Pegasus",
+            "status": "AWAITING_APPROVAL" if requires_approval else "QUEUED",
+            "human_authorization_required": requires_approval,
+            "authorization_status": "PENDING" if requires_approval else "NOT_REQUIRED",
+            "authorized_by": None,
+            "execution_mode": "MANUAL TRACKING ONLY; no connected worker executes tasks yet",
+            "result_note": "",
             "created_at": self._now(),
-        })
+            "updated_at": self._now(),
+        }
+        return self._append("tasks", item)
+
+    def authorize_task(self, task_id: str, approved_by: str) -> dict:
+        approved_by = approved_by.strip()
+        if not approved_by:
+            raise ValueError("An approving authority must be identified.")
+        tasks = self._read("tasks")
+        for task in tasks:
+            if task["id"] != task_id:
+                continue
+            if not task.get("human_authorization_required"):
+                raise ValueError("This task does not require human authorization.")
+            if task.get("authorization_status") == "APPROVED":
+                return task
+            if task.get("status") in ("COMPLETE", "FAILED", "CANCELLED"):
+                raise ValueError("A closed task cannot be authorized.")
+            task["authorization_status"] = "APPROVED"
+            task["authorized_by"] = approved_by
+            task["status"] = "QUEUED"
+            task["updated_at"] = self._now()
+            self._write("tasks", tasks)
+            self.record_event("TASK_AUTHORIZED", {
+                "task_id": task_id,
+                "approved_by": approved_by,
+            })
+            return task
+        raise KeyError(f"Task not found: {task_id}")
+
+    def update_task(self, task_id: str, status: str, result_note: str = "") -> dict:
+        allowed = {"QUEUED", "IN_PROGRESS", "BLOCKED_APPROVAL", "COMPLETE", "FAILED", "CANCELLED"}
+        if status not in allowed:
+            raise ValueError(f"Unsupported task status: {status}")
+        if status == "COMPLETE" and not result_note.strip():
+            raise ValueError("A completion result or verification note is required.")
+        tasks = self._read("tasks")
+        for task in tasks:
+            if task["id"] != task_id:
+                continue
+            if task.get("human_authorization_required") and task.get("authorization_status") != "APPROVED":
+                if status in {"IN_PROGRESS", "COMPLETE"}:
+                    raise PermissionError("Human authorization is required before this task can proceed.")
+            previous = task.get("status")
+            task["status"] = status
+            task["result_note"] = result_note.strip() or task.get("result_note", "")
+            task["updated_at"] = self._now()
+            self._write("tasks", tasks)
+            self.record_event("TASK_STATUS_CHANGED", {
+                "task_id": task_id,
+                "from": previous,
+                "to": status,
+                "result_note": result_note.strip(),
+            })
+            return task
+        raise KeyError(f"Task not found: {task_id}")
 
     def record_event(self, event_type: str, details: dict) -> dict:
         return self._append("commands", {
