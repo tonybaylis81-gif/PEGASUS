@@ -9,7 +9,7 @@ from uuid import uuid4
 
 SYSTEM_IDENTITY = {
     "system": "PEGASUS",
-    "organization": "VALHALLA INDUSTRIAL UTILITY APPLICATIONS INC.",
+    "organization": "VALHALLA INDUSTRIAL UTILITY APPLICATIONS",
     "role": "Administrative & Command System",
     "primary_authority": "Founder, CEO, and Executive Director Jason Don Mabbutt",
     "chain": "PEGASUS -> Sentinel Lieutenant -> Minion",
@@ -76,10 +76,14 @@ class Pegasus:
         return json.loads(self.files[kind].read_text(encoding="utf-8"))
 
     def _write(self, kind: str, items: list) -> None:
-        self.files[kind].write_text(
+        # Atomic replacement prevents a partial JSON write from corrupting the ledger.
+        path = self.files[kind]
+        temporary = path.with_suffix(path.suffix + ".tmp")
+        temporary.write_text(
             json.dumps(items, indent=2, ensure_ascii=False),
             encoding="utf-8",
         )
+        temporary.replace(path)
 
     def _append(self, kind: str, item: dict) -> dict:
         items = self._read(kind)
