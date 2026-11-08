@@ -24,7 +24,7 @@ def initialize_portable_root(root: str | Path) -> dict:
         manifest.write_text(json.dumps({
             "schema_version": 1,
             "system": "PEGASUS",
-            "organization": "VALHALLA INDUSTRIAL UTILITY APPLICATIONS INC.",
+            "organization": "VALHALLA INDUSTRIAL UTILITY APPLICATIONS",
             "purpose": "Portable administrative and command system",
             "created_at": datetime.now(timezone.utc).isoformat(),
             "ledger_path": "LEDGER",
