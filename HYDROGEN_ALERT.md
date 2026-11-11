@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-11-10T00:16:27.798741+00:00
+**PEGASUS alert:** 2026-11-11T16:30:04.936921+00:00
 
 New directly relevant items: 1
 
-## Saskatchewan helium crown offering nets $4.9 million - Last Mountain Times
-- Google News - Saskatchewan | 2026-11-06T08:00:00+00:00
-- https://news.google.com/rss/articles/CBMilwFBVV95cUxPRVdUcWIzZ1NyZEtmSFoxb0FEMjgwR3dtT0VDODZaN2g5SFNVQmdKQnFNYjk3a0w5c1otREtTckp0RllqR1Z6UTY4SjZKNG9JMkdpcTBJbWxybjJnOXlhNHE4MlMwS1FhaTlVQ2NEdkotcWp4UEVQdDVJT2FWbnNpbFp1dU94LS1tWDQyYUU5MjF3WlM2TF9j?oc=5
+## A Canadian company sank a well 7,874 feet into the Saskatchewan prairie, pulled up 169 feet of rock where its hydrogen readings ran highest, and moved its next rig 19 miles out so the drill could reach a layer of salt tight enough to keep hydrogen from leakin - Autonocion
+- Google News - Saskatchewan | 2026-10-09T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMihAFBVV95cUxQb0k3YkVjbk92dHBOSm9fT05IandvbGs2ZUNjYnlCZFhvTjJ4N19xMms3VGtLM3JQSWlLRHBHekJVS0JHcXdhc0Nzb1NlczB2SlJCbzhJR0VOZWRoNVZxR0owdkZkT0VMdDZfQW9TY1BKQkEtdDdVVFFYVlhTZGdSOFFDZDM?oc=5
