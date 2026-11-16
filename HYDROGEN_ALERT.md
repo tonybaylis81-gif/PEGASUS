@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-11-15T00:56:31.481664+00:00
+**PEGASUS alert:** 2026-11-16T16:54:43.836108+00:00
 
 New directly relevant items: 1
 
-## Heartland Hydrogen Hub - Department of Energy (.gov)
-- Google News - North Dakota | 2025-01-27T08:00:00+00:00
-- https://news.google.com/rss/articles/CBMiZkFVX3lxTE1tXzNiaFRsMlgwQkNuN0Exa1R0eC1ja0tuQnJPNTlORENZbXBVWkpvMGFQYi02MDlQNFkzcGVPSHIyMlFUajlzY0FTdzNxSlZhcW9IR2NyVUJYeE1KVUVraWcycHdndw?oc=5
+## UAlberta, CPKC Partner on Hydrogen Locomotive Research - Mirage News
+- Google News - Fuel Cells | 2026-11-16T16:50:00+00:00
+- https://news.google.com/rss/articles/CBMihwFBVV95cUxQZDZlNGFnNXRCbmJGRm5OamJaRkxQWW5SaTRhTU92NjVhTGM2NFg2SGxGdFhZOWRZTGRra3BGT2s0azl2WE1BWjVhY0lhbV9kQWZJZmhxT0xaU19McXpLX3pwbi01b1dDZkE1RXFGYjRYQU1HYV9RMzhxdlFrRU1Ub0FvMVp4TXM?oc=5
