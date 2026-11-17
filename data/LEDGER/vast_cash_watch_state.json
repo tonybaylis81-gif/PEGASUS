@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-17T00:13:09.713388+00:00",
+  "checked_at": "2026-11-17T23:29:35.987607+00:00",
   "web": {
     "online": false,
     "message": "HTTP Error 303: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nSee Other"
