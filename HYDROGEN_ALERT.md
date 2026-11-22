@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-11-18T00:52:08.721326+00:00
+**PEGASUS alert:** 2026-11-22T02:01:53.471758+00:00
 
 New directly relevant items: 1
 
-## U of A and CPKC partner to advance hydrogen locomotive research | Folio - University of Alberta
-- Google News - Hydrogen | 2026-11-16T16:58:39+00:00
-- https://news.google.com/rss/articles/CBMipgFBVV95cUxNSTl3bWF3ZDdadXJiNkpyc00teVVhX0QydWkwUUhQV0ZzWEowcmhMTkNBQmFTTmZDQTEzTVIwZl9ndExaSDY3WDQySmpRWnZaNVJpUE9laEgtZXRPdDZ0a1drMlcwNEFNb3FRMXUweW1BOGR1S3duN3dqM05ZazlLajlUSlhxOC1OdHBFTVFNSkFESWtjMDR2OVd4R01QU0ZqbzRTUTlR?oc=5
+## Multi-state hydrogen hub to bring more energy diversity to North Dakota - KFYR-TV
+- Google News - North Dakota | 2022-10-17T07:00:00+00:00
+- https://news.google.com/rss/articles/CBMiogFBVV95cUxObEpSVWd2eHJrZFNMQ0wtZGt5dVJ3UmItTFBOTTRDczdiczFCYTZPVnBEYzV4MmVKS29wRUs3TmhydUFNUlVXNnd6Qm5PNzl5R0xzbHBKNTJlM1BtU2ZLaC1ZdWxvVDRGNTd4ekJGMy1CdzFFWkVtTFJvcFBxSTVvcU1ZZTJuVGJ4dk0zQW1yd0VxaWt0VXlKVWszRENmaXhWc2fSAbYBQVVfeXFMTjFpT2p5VnBSMURLU3ZxMTA2Skc3dk84Q29ROEh1Z2dNNEtmcHh2SkhUOFJBcVVmclQtTDFad2tvaldxVnhwbHRHbklRWllDNmZUU08zdFRKZVBFTWM4SnJvTlRJTFkyTzNReWdsYUxhRGl5MjFLWkJzZGowYTYxR3BFa0dhVzJ2RXJ4TGh2dEZoMV9oVUo3QTVpajRuVndlQ0RzZkMxRnZiNWJwRjNoQzlnVk9kQWc?oc=5
