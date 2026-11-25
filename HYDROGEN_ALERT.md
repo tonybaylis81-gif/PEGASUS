@@ -1,9 +1,9 @@
 # HYDROGEN ALERT
 
-**PEGASUS alert:** 2026-11-22T02:01:53.471758+00:00
+**PEGASUS alert:** 2026-11-25T23:34:39.070983+00:00
 
 New directly relevant items: 1
 
-## Multi-state hydrogen hub to bring more energy diversity to North Dakota - KFYR-TV
-- Google News - North Dakota | 2022-10-17T07:00:00+00:00
-- https://news.google.com/rss/articles/CBMiogFBVV95cUxObEpSVWd2eHJrZFNMQ0wtZGt5dVJ3UmItTFBOTTRDczdiczFCYTZPVnBEYzV4MmVKS29wRUs3TmhydUFNUlVXNnd6Qm5PNzl5R0xzbHBKNTJlM1BtU2ZLaC1ZdWxvVDRGNTd4ekJGMy1CdzFFWkVtTFJvcFBxSTVvcU1ZZTJuVGJ4dk0zQW1yd0VxaWt0VXlKVWszRENmaXhWc2fSAbYBQVVfeXFMTjFpT2p5VnBSMURLU3ZxMTA2Skc3dk84Q29ROEh1Z2dNNEtmcHh2SkhUOFJBcVVmclQtTDFad2tvaldxVnhwbHRHbklRWllDNmZUU08zdFRKZVBFTWM4SnJvTlRJTFkyTzNReWdsYUxhRGl5MjFLWkJzZGowYTYxR3BFa0dhVzJ2RXJ4TGh2dEZoMV9oVUo3QTVpajRuVndlQ0RzZkMxRnZiNWJwRjNoQzlnVk9kQWc?oc=5
+## $125M fertilizer loan fund split between two North Dakota projects, pending Industrial Commission OK - Agweek
+- Google News - North Dakota | 2024-01-24T08:00:00+00:00
+- https://news.google.com/rss/articles/CBMizgFBVV95cUxNMWpTZWVUUDcwODdEZ0lrWEh1c2JKLUR6eTl0b2EtRUtLOUxGd0FVZHZuTUxaZm5vSWVEaV9abnpaZHhMWnpPQXlPVUxhZl9kd2U5eDRQcGxKLXVtREZtSlcyLVlQQThfc3ZJQVRaNmNfUTlpczV4c3FCaHZWd3JNeXloVVQ3Ty1ycDRuUjVTcmlvNDJFZ2d4bGJhMG1QSm52TlE5akhOeVhNSm9mdUFWNVJXZy11MW5RRnlya0ljaWNSWHJzQnlQbEk3MjVNUQ?oc=5
